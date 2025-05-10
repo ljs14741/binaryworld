@@ -1,10 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>진수의 잡동사니 - 미니게임 포털 | BinaryWorld</title>
+
+  <!-- SEO -->
+  <meta name="description" content="진수의 잡동사니 - 총알피하기, 핀볼랜덤뽑기, 김치랜덤디펜스, 미니게임, AI 외모 평가, 죽음 예측, 음식 랜덤, 상식 테스트 등 다양한 웹 프로젝트 모음">
+  <meta name="keywords" content="진수의 잡동사니,총알피하기, 핀볼랜덤뽑기, 미니게임 포털, AI 외모 평가, 죽음 예측, 상식 테스트, 음식 랜덤, 익명투표, BinaryWorld">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Binary World">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="진수의 잡동사니 | BinaryWorld">
+  <meta property="og:description" content="총알피하기, 핀볼랜덤뽑기, 김치랜덤디펜스, AI 외모 평가, 죽음 예측, 음식 랜덤, 상식 테스트 등 다양한 웹 프로젝트 모음">
+  <meta property="og:image" content="https://binaryworld.kr/img/radish.png">
+  <meta property="og:url" content="https://binaryworld.kr">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="진수의 잡동사니 | BinaryWorld">
+  <meta name="twitter:description" content="총알피하기, 핀볼랜덤뽑기, 김치랜덤디펜스, AI 외모 평가, 죽음 예측, 음식 랜덤, 상식 테스트 등 다양한 웹 프로젝트 모음">
+  <meta name="twitter:image" content="https://binaryworld.kr/img/radish.png">
+
+
+  <!-- 기본 파비콘 -->
+  <link rel="icon" href="/img/favicon/favicon.ico" type="image/x-icon">
+
+  <!-- 다양한 디바이스 아이콘 -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+
+  <!-- manifest와 윈도우용 타일 설정 -->
+  <link rel="manifest" href="/img/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- 폰트 + 스타일 -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
-$END$
+<header>
+  <h1>진수의 잡동사니 | Binary World</h1>
+  <p>다양한 웹 프로젝트들 모음</p>
+</header>
+
+<section class="links">
+  <h2>🔗 서비스 바로가기</h2>
+  <ul>
+    <li><a href="https://game.binaryworld.kr" target="_blank">🎮 미니게임 포털</a></li>
+    <li><a href="https://vote.binaryworld.kr" target="_blank">🗳️ 익명투표 사이트 (도메인작업중)</a></li>
+    <li><a href="https://ai.binaryworld.kr" target="_blank">🤖 AI 외모 평가 (도메인작업중)</a></li>
+    <li><a href="https://menu.binaryworld.kr" target="_blank">🍱 음식 메뉴 랜덤 뽑기 (도메인작업중)</a></li>
+    <li><a href="https://quiz.binaryworld.kr" target="_blank">📚 상식 테스트 (도메인작업중)</a></li>
+    <li><a href="https://godofdeath.pages.dev/" target="_blank">👻 죽음 예측 테스트</a></li>
+    <li><a href="https://kimchilotto.netlify.app/" target="_blank">🍀 김치로또 추첨기</a></li>
+  </ul>
+</section>
+
+<footer>
+  <p>© 2025 Binary World. Created by binary.</p>
+</footer>
 </body>
 </html>
