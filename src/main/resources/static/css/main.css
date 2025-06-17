@@ -1,59 +1,69 @@
+:root {
+    --primary: #00ffc3;
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --card-bg: #1e1e1e;
+}
+
 body {
-    font-family: 'Orbitron', sans-serif;
-    background-color: #0f0f0f;
-    color: #fff;
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
+    background: radial-gradient(circle at 20% 20%, #1a1a1a, var(--bg-color));
+    color: var(--text-color);
     margin: 0;
     padding: 0;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 header {
     text-align: center;
-    padding: 3rem 1rem;
-    background: linear-gradient(135deg, #1f1f1f, #2d2d2d);
-    border-bottom: 2px solid #00ffc3;
+    padding: 4rem 1rem;
+    background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+    border-bottom: 2px solid var(--primary);
 }
 
 header h1 {
     font-size: 3rem;
     margin-bottom: 0.5rem;
-    color: #00ffc3;
+    color: var(--primary);
 }
 
 header p {
     font-size: 1.2rem;
-    color: #aaa;
+    color: #bbb;
 }
 
 section {
     padding: 2rem 1rem;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
 .links ul {
     list-style: none;
     padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
 }
 
 .links li {
-    background: #1e1e1e;
-    margin: 0.5rem 0;
-    padding: 1rem;
-    border-radius: 10px;
-    transition: transform 0.2s, background-color 0.3s;
+    background: var(--card-bg);
+    padding: 1.2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s, box-shadow 0.3s;
 }
 
 .links li:hover {
-    transform: translateX(5px);
-    background-color: #252525;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5);
 }
 
 .links a {
-    color: #ffffff;
+    color: var(--text-color);
     text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1rem;
+    font-weight: 600;
+    font-size: 1rem;
 }
 
 .links a:hover {
@@ -62,9 +72,9 @@ section {
 
 footer {
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 3rem 1rem;
     font-size: 0.9rem;
     color: #777;
     border-top: 1px solid #333;
-    margin-top: 3rem;
+    margin-top: 4rem;
 }
