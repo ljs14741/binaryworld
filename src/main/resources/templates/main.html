@@ -55,16 +55,17 @@
   <!-- 폰트 + 스타일 -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" th:href="@{/css/main.css}">
+  <link id="theme-style" rel="stylesheet" th:href="@{/css/main-dark.css}">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6890085609044109"
           crossorigin="anonymous"></script>
 </head>
 <body>
-<header>
+<th:block th:include="common/header"></th:block>
+<div class="page-title">
   <h1>진수의 잡동사니 | Binary World</h1>
   <p>다양한 웹 프로젝트들 모음</p>
-</header>
+</div>
 
 <section class="links">
   <h2>🔗 서비스 바로가기</h2>
@@ -79,8 +80,42 @@
   </ul>
 </section>
 
-<footer>
-  <p>© 2025 Binary World. Created by binary.</p>
-</footer>
+<th:block th:include="common/footer"></th:block>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // 1. 햄버거 메뉴 토글
+    const toggleBtn = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.nav-links');
+
+    if (toggleBtn && nav) {
+      toggleBtn.addEventListener('click', () => {
+        toggleBtn.classList.toggle('active');
+        nav.classList.toggle('open');
+      });
+    }
+
+    // 2. 테마 토글
+    const themeToggle = document.getElementById('themeToggle');
+    const themeLink = document.getElementById('theme-style');
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+
+    applyTheme(currentTheme);
+
+    if (themeToggle && themeLink) {
+      themeToggle.addEventListener('click', () => {
+        const isDark = themeLink.getAttribute('href').includes('dark');
+        const nextTheme = isDark ? 'light' : 'dark';
+        applyTheme(nextTheme);
+      });
+    }
+
+    function applyTheme(theme) {
+      themeLink.setAttribute('href', `/css/main-${theme}.css`);
+      localStorage.setItem('theme', theme);
+    }
+  });
+</script>
+
 </body>
 </html>
