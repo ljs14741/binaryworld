@@ -147,28 +147,57 @@ section {
     max-width: 800px;
     margin: 0 auto;
 }
+
+.intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+    padding: 0 1rem;
+    font-size: 1.05rem;
+    color: #444;
+    line-height: 1.8;
+}
+
+.links h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #0077cc;
+    margin-bottom: 1rem;
+}
+
 .links ul {
     list-style: none;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
+
 .links li {
     background: #ffffff;
-    margin: 0.5rem 0;
-    padding: 1rem;
-    border-radius: 10px;
-    transition: transform 0.2s, background-color 0.3s;
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
 }
+
 .links li:hover {
-    transform: translateX(5px);
-    background-color: #f1f1f1;
+    transform: translateY(-3px);
+    background-color: #f0f8ff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
-.links a {
-    color: #222;
+
+.links li a {
+    display: block;
+    color: #0077cc;
+    font-weight: 600;
     text-decoration: none;
-    font-weight: bold;
     font-size: 1.1rem;
+    transition: color 0.2s;
 }
-.links a:hover {
+
+.links li a:hover {
+    color: #005fa3;
     text-decoration: underline;
 }
 
@@ -287,6 +316,19 @@ section {
     .theme-btn {
         font-size: 1rem;
         padding: 6px 12px;
+    }
+
+    .links li {
+        padding: 0.8rem 1rem;
+    }
+    .links li a {
+        font-size: 1rem;
+    }
+    .links h2 {
+        font-size: 1.3rem;
+    }
+    .intro {
+        font-size: 0.95rem;
     }
 
     .site-footer {
