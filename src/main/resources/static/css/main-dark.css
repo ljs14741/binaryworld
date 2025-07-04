@@ -1,24 +1,28 @@
-/* ✅ main-dark.css 전체 */
+/*
+****************************************************************************************************
+🌑 다크 테마 - main-dark.css (공통용)
+header, footer, title, contact
+****************************************************************************************************
+*/
 
-/* 기본 세팅 */
 body {
-    font-family: 'Orbitron', sans-serif;
-    background-color: #0f0f0f;
-    color: #fff;
+    font-family: 'Pretendard', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
     margin: 0;
     padding-top: 60px;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
-/* 헤더 */
+/* ========== Header ========== */
 .binary-header {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    color: #00ffe1;
+    background: rgba(18, 18, 18, 0.95);
+    color: #fff;
     z-index: 9999;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     font-family: 'Pretendard', sans-serif;
 }
 
@@ -29,45 +33,44 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
 }
 
-/* site logo */
+/* Site Logo */
 .site-logo {
     font-size: 1.5rem;
-    font-weight: bold;
-    color: #00ffe1;
+    font-weight: 700;
+    color: #fff;
     text-decoration: none;
     white-space: nowrap;
     transition: color 0.3s;
 }
 .site-logo:hover {
-    color: #00e1ff;
+    color: #90CAF9;
 }
 
-/* 네비게이션 */
+/* Navigation */
 .nav-links {
     display: flex;
     gap: 1.5rem;
 }
 .nav-links a {
-    color: #ffffff;
+    color: #e0e0e0;
     text-decoration: none;
     font-size: 1rem;
     transition: color 0.3s;
 }
 .nav-links a:hover {
-    color: #00ffe1;
+    color: #ffffff;
 }
 
-/* 햄버거 + 테마 토글 버튼 묶음 */
+/* Header Controls */
 .header-controls {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-/* 햄버거 버튼 */
+/* Hamburger */
 .nav-toggle {
     display: none;
     background: none;
@@ -81,68 +84,173 @@ body {
     display: block;
     width: 25px;
     height: 3px;
-    background: #00ffe1;
+    background: #ffffff;
     border-radius: 2px;
     transition: all 0.3s ease;
 }
-.hamburger::before {
-    transform: translateY(-8px);
-}
-.hamburger::after {
-    transform: translateY(5px);
-}
-.nav-toggle.active .hamburger {
-    background: transparent;
-}
-.nav-toggle.active .hamburger::before {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-.nav-toggle.active .hamburger::after {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
+.hamburger::before { transform: translateY(-8px); }
+.hamburger::after { transform: translateY(5px); }
+.nav-toggle.active .hamburger { background: transparent; }
+.nav-toggle.active .hamburger::before { transform: rotate(45deg) translate(5px,5px); }
+.nav-toggle.active .hamburger::after { transform: rotate(-45deg) translate(5px,-5px); }
 
-/* 테마 버튼 */
+/* Theme Button */
 .theme-btn {
     background: none;
-    border: none;
-    color: #00ffe1;
-    font-size: 1.2rem;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
-    padding: 8px 16px;
-    white-space: nowrap;
-    transition: color 0.3s, background-color 0.3s;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
 }
 .theme-btn:hover {
-    color: #00e1ff;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 4px;
+    background-color: #ffffff;
+    color: #121212;
 }
 
-/* 페이지 제목 */
+/* ========== Page Title ========== */
 .page-title {
     text-align: center;
     padding: 2.5rem 1rem 2rem;
-    background: linear-gradient(135deg, #181818, #1e1e1e);
-    border-bottom: 1px solid #00ffc3;
+    background: linear-gradient(135deg, #1e1e1e, #252525);
+    border-bottom: 1px solid #333;
     margin-bottom: 1rem;
-    animation: fadeInDown 0.6s ease-in-out;
+    animation: fadeInDown 0.5s ease-in-out;
 }
 .page-title h1 {
-    font-size: 2rem;
-    margin-bottom: 0.25rem;
-    color: #00ffc3;
+    font-size: 2.2rem;
+    margin: 0;
+    color: #ffffff;
     font-family: 'Orbitron', sans-serif;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 .page-title p {
-    font-size: 1rem;
-    color: #aaa;
-    font-weight: 300;
-    margin-top: 0;
+    font-size: 1.1rem;
+    color: #cccccc;
+    font-weight: 400;
+    margin-top: 0.5rem;
 }
 
-/* 링크 목록 */
+/* ========== Page Content ========== */
+.page-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    color: #dddddd;
+}
+
+.page-content h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.page-content p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* ========== Footer ========== */
+.site-footer {
+    background-color: #181818;
+    color: #999;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 1.5rem 1rem;
+    border-top: 1px solid #303030;
+    margin-top: 4rem;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-right a,
+.footer-email,
+.contact-email {
+    color: #bbbbbb;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: color 0.2s;
+}
+.footer-right a:hover,
+.footer-email:hover,
+.contact-email:hover {
+    color: #ffffff;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+    .nav-toggle { display: block; }
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: #181818;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        gap: 1rem;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    .nav-links.open {
+        max-height: 500px;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+    .nav-links a {
+        font-size: 1.1rem;
+        padding: 0.5rem 0;
+    }
+    .theme-btn {
+        font-size: 0.95rem;
+        padding: 5px 10px;
+    }
+    .site-footer {
+        font-size: 0.85rem;
+        padding: 1rem 0.5rem;
+    }
+    .page-content {
+        padding: 1rem 0.5rem;
+    }
+    .page-content h1 {
+        font-size: 1.5rem;
+    }
+    .page-content p {
+        font-size: 0.95rem;
+    }
+}
+
+/* ========== Animation ========== */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/*
+****************************************************************************************************
+🌑 다크 테마 - main-dark.css (공통용) 끝
+****************************************************************************************************
+*/
+
+
+
+
+
+
+
+
+
+/* ===== 링크 목록 영역 (잡동사니 전용) ===== */
 section {
     padding: 2rem 1rem;
     max-width: 800px;
@@ -155,14 +263,14 @@ section {
     margin: 0 auto 2rem auto;
     padding: 0 1rem;
     font-size: 1.05rem;
-    color: #bbb;
+    color: #bbbbbb;
     line-height: 1.8;
 }
 
 .links h2 {
     text-align: center;
     font-size: 1.5rem;
-    color: #00ffc3;
+    color: #ffffff;
     margin-bottom: 1rem;
 }
 
@@ -175,22 +283,22 @@ section {
 }
 
 .links li {
-    background: #1a1a1a;
+    background: #1c1c1c;
     padding: 1rem 1.2rem;
     border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.4);
     transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
 }
 
 .links li:hover {
-    transform: translateY(-3px);
-    background-color: #222;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    transform: translateY(-4px);
+    background-color: #252525;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.5);
 }
 
 .links li a {
     display: block;
-    color: #00ffe1;
+    color: #ffffff;
     font-weight: 600;
     text-decoration: none;
     font-size: 1.1rem;
@@ -198,113 +306,11 @@ section {
 }
 
 .links li a:hover {
-    color: #00ccb3;
+    color: #90CAF9;
     text-decoration: underline;
 }
 
-/* ===== 푸터 ===== */
-.site-footer {
-    background-color: #111;
-    color: #aaa;
-    padding: 1.5rem 1rem;
-    font-size: 0.9rem;
-    text-align: center;
-    border-top: 1px solid #333;
-    margin-top: 4rem;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.footer-right a,
-.footer-email,
-.contact-email {
-    color: #66aaff;
-    text-decoration: none;
-    margin: 0 0.5rem;
-    transition: color 0.2s;
-}
-
-.footer-right a:hover,
-.footer-email:hover,
-.contact-email:hover {
-    color: #3399ff;
-}
-
-/* ===== 페이지 공통 스타일 ===== */
-.page-content {
-    padding: 2rem 1rem;
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.7;
-    color: #ddd;
-}
-
-.page-content h1 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: #eee;
-}
-
-.page-content p {
-    margin-bottom: 0.8rem;
-}
-
-/* 반응형 */
 @media (max-width: 768px) {
-    .nav-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.95);
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem 0;
-        gap: 1rem;
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transition: all 0.3s ease;
-    }
-
-    .nav-links.open {
-        max-height: 500px;
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-    }
-
-    .nav-links a {
-        font-size: 1.1rem;
-        width: 100%;
-        text-align: center;
-        padding: 0.5rem 0;
-        color: #00ffe1;
-    }
-
-    .nav-links a:hover {
-        background: rgba(255, 255, 255, 0.05);
-    }
-
-    .header-controls {
-        gap: 0.3rem;
-    }
-
-    .theme-btn {
-        font-size: 0.95rem;
-        padding: 4px 8px;
-    }
-
     .links li {
         padding: 0.8rem 1rem;
     }
@@ -316,34 +322,5 @@ section {
     }
     .intro {
         font-size: 0.95rem;
-    }
-
-    .site-footer {
-        font-size: 0.85rem;
-        padding: 1rem 0.5rem;
-    }
-
-    .page-content {
-        padding: 1rem 0.5rem;
-    }
-
-    .page-content h1 {
-        font-size: 1.5rem;
-    }
-
-    .page-content p {
-        font-size: 0.95rem;
-    }
-}
-
-/* 애니메이션 */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
     }
 }
