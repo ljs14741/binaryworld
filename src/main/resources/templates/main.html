@@ -83,6 +83,46 @@
   </ul>
 </section>
 
+<section class="visitor-count">
+  <h2>👀 방문자 현황 25.07.06부터</h2>
+  <table class="visitor-table">
+    <thead>
+    <tr>
+      <th>구분</th>
+      <th>BinaryWorld</th>
+      <th>game</th>
+      <th>vote</th>
+      <th>food</th>
+      <th>quiz</th>
+      <th>face</th>
+      <th>총합계</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>일일</td>
+      <td id="daily-binaryworld">0</td>
+      <td id="daily-game">0</td>
+      <td id="daily-vote">0</td>
+      <td id="daily-food">0</td>
+      <td id="daily-quiz">0</td>
+      <td id="daily-face">0</td>
+      <td id="daily-total">0</td>
+    </tr>
+    <tr>
+      <td>전체</td>
+      <td id="total-binaryworld">0</td>
+      <td id="total-game">0</td>
+      <td id="total-vote">0</td>
+      <td id="total-food">0</td>
+      <td id="total-quiz">0</td>
+      <td id="total-face">0</td>
+      <td id="total-total">0</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
 <th:block th:include="common/footer"></th:block>
 
 <script>
@@ -117,6 +157,37 @@
       themeLink.setAttribute('href', `/css/main-${theme}.css`);
       localStorage.setItem('theme', theme);
     }
+
+    Promise.all([
+      fetch('/api/visit/today').then(res => res.json()),
+      fetch('/api/visit/total').then(res => res.json())
+    ]).then(([todayData, totalData]) => {
+      const sites = ['BinaryWorld', 'game', 'vote', 'food', 'quiz', 'face'];
+
+      let dailyTotal = 0;
+      let totalTotal = 0;
+
+      sites.forEach(site => {
+        const today = todayData.find(d => d.pageName === site);
+        const total = totalData.find(t => t.pageName === site);
+
+        const todayCount = today ? today.visitCount : 0;
+        const totalCount = total ? total.totalCount : 0;
+
+        dailyTotal += todayCount;
+        totalTotal += totalCount;
+
+        document.getElementById(`daily-${site.toLowerCase()}`).textContent = todayCount;
+        document.getElementById(`total-${site.toLowerCase()}`).textContent = totalCount;
+      });
+
+      document.getElementById('daily-total').textContent = dailyTotal;
+      document.getElementById('total-total').textContent = totalTotal;
+    }).catch(err => {
+      console.error(err);
+      alert('방문자 데이터를 불러오지 못했습니다.');
+    });
+
   });
 </script>
 

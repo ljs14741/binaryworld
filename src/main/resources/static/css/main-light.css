@@ -182,6 +182,33 @@ body {
     color: #315f7c;
 }
 
+
+.icon-container {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.link-icon {
+    width: 42px;
+    height: 42px;
+    display: inline-block;
+    background-size: cover;
+    border-radius: 50%;
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0.9;
+}
+
+.link-icon:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.link-icon.twitter { background-image: url(../img/icon-twitter.png); }
+.link-icon.facebook { background-image: url(../img/icon-facebook.png); }
+.link-icon.kakao { background-image: url(../img/icon-kakao.png); }
+
 /* ===== 반응형 ===== */
 @media (max-width: 768px) {
     .nav-toggle { display: block; }
@@ -300,6 +327,51 @@ section {
     text-decoration: underline;
 }
 
+/* ===== 방문자 현황 테이블 ===== */
+.visitor-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.visitor-table th,
+.visitor-table td {
+    border: 1px solid #ddd;
+    padding: 0.6rem 0.8rem;
+    text-align: center;
+}
+
+.visitor-table th {
+    background-color: #f0f4f8;
+    color: #4682B4;
+    font-weight: 600;
+}
+
+.visitor-table td {
+    background-color: #ffffff;
+    color: #333;
+}
+
+.visitor-table tr:nth-child(even) td {
+    background-color: #f9f9f9;
+}
+
+.visitor-table td:first-child {
+    font-weight: 500;
+    color: #4682B4;
+}
+
+.visitor-count h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #4682B4;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+
 /* ===== 반응형 ===== */
 @media (max-width: 768px) {
     .links li {
@@ -313,5 +385,8 @@ section {
     }
     .intro {
         font-size: 0.95rem;
+    }
+    .visitor-table {
+        font-size: 0.85rem;
     }
 }

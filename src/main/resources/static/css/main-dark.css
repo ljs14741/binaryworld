@@ -183,6 +183,32 @@ body {
     color: #ffffff;
 }
 
+.icon-container {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.link-icon {
+    width: 42px;
+    height: 42px;
+    display: inline-block;
+    background-size: cover;
+    border-radius: 50%;
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0.9;
+}
+
+.link-icon:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.link-icon.twitter { background-image: url(../img/icon-twitter.png); }
+.link-icon.facebook { background-image: url(../img/icon-facebook.png); }
+.link-icon.kakao { background-image: url(../img/icon-kakao.png); }
+
 /* ========== Responsive ========== */
 @media (max-width: 768px) {
     .nav-toggle { display: block; }
@@ -310,6 +336,50 @@ section {
     text-decoration: underline;
 }
 
+/* ===== 방문자 현황 테이블 (다크 테마) ===== */
+.visitor-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.visitor-table th,
+.visitor-table td {
+    border: 1px solid #333;
+    padding: 0.6rem 0.8rem;
+    text-align: center;
+}
+
+.visitor-table th {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.visitor-table td {
+    background-color: #181818;
+    color: #dddddd;
+}
+
+.visitor-table tr:nth-child(even) td {
+    background-color: #1c1c1c;
+}
+
+.visitor-table td:first-child {
+    font-weight: 500;
+    color: #90CAF9;
+}
+
+.visitor-count h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
 @media (max-width: 768px) {
     .links li {
         padding: 0.8rem 1rem;
@@ -322,5 +392,9 @@ section {
     }
     .intro {
         font-size: 0.95rem;
+    }
+
+    .visitor-table {
+        font-size: 0.85rem;
     }
 }
