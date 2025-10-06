@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>Infra Portfolio | BinaryWorld</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- 공통 테마 -->
+    <link id="theme-style" rel="stylesheet" th:href="@{/css/main-light.css}" href="/css/main-light.css" />
+    <!-- 이 페이지 전용 -->
+    <link rel="stylesheet" th:href="@{/css/infra.css}" href="/css/infra.css" />
+</head>
+<body>
+<th:block th:include="common/header"></th:block>
+
+<!-- ========== Hero ========== -->
+<section class="infra-hero">
+    <div class="infra-hero__inner">
+        <h1>BinaryWorld 인프라</h1>
+        <p>미니PC(우분투) · Docker Compose · Caddy(HTTPS) · Jenkins(CI/CD) · MySQL · JPA</p>
+
+        <!-- 기술 배지 (추가: JPA, Portainer, 가비아, CI/CD) -->
+        <div class="stack-badges">
+            <span>Ubuntu</span><span>Docker</span><span>Compose</span><span>Caddy</span><span>Let’s Encrypt</span>
+            <span>Jenkins</span><span>Spring Boot</span><span>JPA</span><span>MySQL 8</span>
+            <span>Portainer</span><span>가비아 DNS</span><span>Webhook CI/CD</span>
+        </div>
+
+        <!-- CI/CD 한 줄 요약 -->
+        <div class="flow">
+            <span class="dot">GitHub Push</span>
+            <span class="arrow">→</span>
+            <span class="dot">Webhook</span>
+            <span class="arrow">→</span>
+            <span class="dot">Jenkins Build</span>
+            <span class="arrow">→</span>
+            <span class="dot">Docker/Compose Deploy</span>
+        </div>
+        <p class="hint">푸시하면 자동으로 빌드·배포되는 <b>Continuous Deployment</b> 흐름</p>
+    </div>
+</section>
+
+<!-- ========== Architecture (SVG) ========== -->
+<section class="infra-block">
+    <h2>아키텍처 한눈에 보기</h2>
+
+    <div class="diagram-wrap">
+        <svg viewBox="0 0 1200 480" class="diagram" role="img" aria-label="BinaryWorld Architecture">
+            <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                    <stop stop-color="#e8f1ff" offset="0"/>
+                    <stop stop-color="#ffffff" offset="1"/>
+                </linearGradient>
+                <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.08"/>
+                </filter>
+                <style>
+                    .box{fill:url(#g1);stroke:#c7d2fe;stroke-width:1.2;rx:14}
+                    .title{font:700 16px ui-sans-serif,system-ui; fill:#1e293b}
+                    .sub{font:500 13px ui-sans-serif,system-ui; fill:#475569}
+                    .tag{font:600 12px ui-sans-serif,system-ui; fill:#2563eb}
+                    .line{stroke:#64748b;stroke-width:1.8;marker-end:url(#arrow)}
+                </style>
+                <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+                </marker>
+            </defs>
+
+            <!-- Internet -->
+            <rect x="40" y="185" width="220" height="110" class="box" filter="url(#shadow)"/>
+            <text x="150" y="220" text-anchor="middle" class="title">Internet</text>
+            <text x="150" y="245" text-anchor="middle" class="sub">Clients (HTTPS)</text>
+
+            <!-- Caddy -->
+            <rect x="330" y="160" width="240" height="160" class="box" filter="url(#shadow)"/>
+            <text x="450" y="195" text-anchor="middle" class="title">Caddy (80/443)</text>
+            <text x="450" y="220" text-anchor="middle" class="sub">Automatic HTTPS · Reverse Proxy</text>
+            <text x="450" y="245" text-anchor="middle" class="tag">TLS termination</text>
+
+            <!-- Link -->
+            <line x1="260" y1="240" x2="330" y2="240" class="line"/>
+
+            <!-- Apps -->
+            <rect x="640" y="40" width="220" height="110" class="box" filter="url(#shadow)"/>
+            <text x="750" y="75" text-anchor="middle" class="title">binaryworld:8080</text>
+            <text x="750" y="100" text-anchor="middle" class="sub">루트 도메인</text>
+
+            <rect x="900" y="40" width="220" height="110" class="box" filter="url(#shadow)"/>
+            <text x="1010" y="75" text-anchor="middle" class="title">game:8080</text>
+            <text x="1010" y="100" text-anchor="middle" class="sub">game.binaryworld.kr</text>
+
+            <rect x="640" y="190" width="220" height="110" class="box" filter="url(#shadow)"/>
+            <text x="750" y="225" text-anchor="middle" class="title">vote:8080</text>
+            <text x="750" y="250" text-anchor="middle" class="sub">vote.binaryworld.kr</text>
+
+            <rect x="900" y="190" width="220" height="110" class="box" filter="url(#shadow)"/>
+            <text x="1010" y="225" text-anchor="middle" class="title">app:8080</text>
+            <text x="1010" y="250" text-anchor="middle" class="sub">food.binaryworld.kr</text>
+
+            <rect x="640" y="340" width="220" height="110" class="box" filter="url(#shadow)"/>
+            <text x="750" y="375" text-anchor="middle" class="title">quiz:8080</text>
+            <text x="750" y="400" text-anchor="middle" class="sub">quiz.binaryworld.kr</text>
+
+            <rect x="900" y="340" width="220" height="110" class="box" filter="url(#shadow)"/>
+            <text x="1010" y="375" text-anchor="middle" class="title">face:8080</text>
+            <text x="1010" y="400" text-anchor="middle" class="sub">face.binaryworld.kr</text>
+
+            <!-- edges from Caddy -->
+            <line x1="570" y1="210" x2="640" y2="95" class="line"/>
+            <line x1="570" y1="210" x2="900" y2="95" class="line"/>
+            <line x1="570" y1="210" x2="640" y2="245" class="line"/>
+            <line x1="570" y1="210" x2="900" y2="245" class="line"/>
+            <line x1="570" y1="210" x2="640" y2="395" class="line"/>
+            <line x1="570" y1="210" x2="900" y2="395" class="line"/>
+
+            <!-- MySQL -->
+            <rect x="330" y="360" width="240" height="90" class="box" filter="url(#shadow)"/>
+            <text x="450" y="395" text-anchor="middle" class="title">mysql-local:3306</text>
+            <text x="450" y="420" text-anchor="middle" class="sub">UTF8MB4 · Volume /var/lib/mysql · JPA</text>
+
+            <!-- Jenkins -->
+            <rect x="40" y="360" width="240" height="90" class="box" filter="url(#shadow)"/>
+            <text x="160" y="395" text-anchor="middle" class="title">Jenkins</text>
+            <text x="160" y="420" text-anchor="middle" class="sub">CI/CD Webhook 기반 자동 배포</text>
+        </svg>
+    </div>
+
+    <p class="hint-center">DNS는 <b>가비아</b>에서 관리하고, Caddy가 모든 서브도메인에 대해 HTTPS를 자동 발급/갱신합니다.</p>
+</section>
+
+<!-- ========== 서비스 하이라이트 ========== -->
+<section class="infra-grid">
+    <div class="card highlight">
+        <h3>binaryworld.kr (루트)</h3>
+        <ul class="bullet">
+            <li>SEO 메타 / Open Graph 구성</li>
+            <li>Google AdSense 연동</li>
+            <li>방명록 · 방문자 통계 API</li>
+        </ul>
+        <div class="links2"><a href="https://binaryworld.kr" target="_blank">바로가기</a></div>
+    </div>
+
+    <div class="card highlight">
+        <h3>game</h3>
+        <ul class="bullet">
+            <li><b>Phaser</b> 기반 미니게임</li>
+            <li>총알피하기, 디펜스, 핀볼룰렛뽑기</li>
+        </ul>
+        <div class="links2"><a href="https://game.binaryworld.kr" target="_blank">바로가기</a></div>
+    </div>
+
+    <div class="card highlight">
+        <h3>face</h3>
+        <ul class="bullet">
+            <li><b>GPT API</b> 활용(재미용 외모 평가)</li>
+        </ul>
+        <div class="links2"><a href="https://face.binaryworld.kr" target="_blank">바로가기</a></div>
+    </div>
+
+    <div class="card">
+        <h3>vote</h3>
+        <ul class="bullet">
+            <li>익명 투표/결과 시각화</li>
+            <li>간편 생성/공유 UX</li>
+        </ul>
+        <div class="links2"><a href="https://vote.binaryworld.kr" target="_blank">바로가기</a></div>
+    </div>
+
+    <div class="card">
+        <h3>food</h3>
+        <ul class="bullet">
+            <li>랜덤 음식 추천</li>
+        </ul>
+        <div class="links2"><a href="https://food.binaryworld.kr" target="_blank">바로가기</a></div>
+    </div>
+
+    <div class="card">
+        <h3>quiz</h3>
+        <ul class="bullet">
+            <li>카테고리별 상식 테스트</li>
+        </ul>
+        <div class="links2"><a href="https://quiz.binaryworld.kr" target="_blank">바로가기</a></div>
+    </div>
+</section>
+
+<th:block th:include="common/footer"></th:block>
+</body>
+</html>

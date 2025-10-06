@@ -19,6 +19,9 @@ public class MainController {
         return "main";
     }
 
+    @GetMapping("/infra")
+    public String infra() { return "infra"; }
+
     @GetMapping("/about")
     public String about() {
         return "common/about";
