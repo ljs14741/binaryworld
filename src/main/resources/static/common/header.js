@@ -61,6 +61,27 @@
     return 'dark';
   }
 
+  function applyPageTheme(theme) {
+    const nextTheme = theme === 'light' ? 'light' : 'dark';
+    const themeLink = document.getElementById('theme-style');
+
+    if (themeLink) {
+      const currentHref = themeLink.getAttribute('href') || '';
+      const nextHref = currentHref.includes('/css/main-')
+        ? currentHref.replace(/main-(light|dark)\.css/, 'main-' + nextTheme + '.css')
+        : '/css/main-' + nextTheme + '.css';
+      themeLink.setAttribute('href', nextHref);
+    }
+
+    try {
+      localStorage.setItem('theme', nextTheme);
+    } catch {
+      // ignore storage errors
+    }
+
+    return nextTheme;
+  }
+
   function applyHeaderTheme(theme) {
     const nextTheme = theme === 'light' ? 'light' : 'dark';
     mount.dataset.theme = nextTheme;
@@ -73,6 +94,10 @@
       );
       themeToggle.setAttribute('aria-pressed', String(nextTheme === 'dark'));
     }
+  }
+
+  function applyTheme(theme) {
+    applyHeaderTheme(applyPageTheme(theme));
   }
 
   ensureFonts();
@@ -133,10 +158,11 @@
     '</div>' +
     '</div>';
 
-  applyHeaderTheme(resolveTheme());
+  applyTheme(resolveTheme());
 
   const toggle = mount.querySelector('.bw-gnb-toggle');
   const navigation = mount.querySelector('.bw-gnb-nav');
+  const themeToggle = mount.querySelector('#themeToggle');
 
   function setMenuOpen(open) {
     toggle.setAttribute('aria-expanded', String(open));
@@ -176,36 +202,25 @@
     }
   });
 
-  const themeLink = document.getElementById('theme-style');
-  if (themeLink) {
-    new MutationObserver(function () {
-      applyHeaderTheme(resolveTheme());
-    }).observe(themeLink, {
-      attributes: true,
-      attributeFilter: ['href'],
-    });
+  // Own the theme button so pages that bind before header mounts still work,
+  // and pages that bind later do not double-toggle.
+  if (themeToggle) {
+    themeToggle.addEventListener(
+      'click',
+      function (event) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        applyTheme(resolveTheme() === 'dark' ? 'light' : 'dark');
+      },
+      true
+    );
   }
 
   window.addEventListener('storage', function (event) {
     if (event.key === 'theme') {
-      applyHeaderTheme(resolveTheme());
+      applyTheme(resolveTheme());
     }
   });
-
-  // Keep header theme in sync when page scripts toggle #themeToggle.
-  document.addEventListener(
-    'click',
-    function (event) {
-      if (!event.target.closest('#themeToggle')) {
-        return;
-      }
-
-      window.setTimeout(function () {
-        applyHeaderTheme(resolveTheme());
-      }, 0);
-    },
-    true
-  );
 
   document.dispatchEvent(new CustomEvent('bw:header-ready'));
 })();
