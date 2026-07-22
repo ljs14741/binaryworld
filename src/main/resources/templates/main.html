@@ -25,11 +25,7 @@
   <meta name="twitter:description" content="총알피하기, 핀볼랜덤뽑기, 김치랜덤디펜스, AI 외모 평가, 인생 망한 사람들 모임, 죽음 예측, 음식 랜덤, 상식 테스트 등 다양한 웹 프로젝트 모음">
   <meta name="twitter:image" content="https://binaryworld.kr/img/radish.png">
 
-
-  <!-- 기본 파비콘 -->
   <link rel="icon" href="/img/favicon/favicon.ico" type="image/x-icon">
-
-  <!-- 다양한 디바이스 아이콘 -->
   <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
@@ -43,171 +39,187 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
-
-  <!-- manifest와 윈도우용 타일 설정 -->
   <link rel="manifest" href="/img/favicon/manifest.json">
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#0b0d10">
 
   <meta name="google-adsense-account" content="ca-pub-6890085609044109">
 
-  <!-- 폰트 + 스타일 -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/common/header.css}">
   <link rel="stylesheet" th:href="@{/common/footer.css}">
   <link rel="stylesheet" th:href="@{/common/guestbook.css}">
-  <link id="theme-style" rel="stylesheet" th:href="@{/css/main-light.css}">
+  <link id="theme-style" rel="stylesheet" th:href="@{/css/home-light.css}">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6890085609044109"
           crossorigin="anonymous"></script>
 
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TSFJBQ41N"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-0TSFJBQ41N');
   </script>
 </head>
-<body>
+<body class="bw-home-body">
 <header id="global-header" aria-label="Binary World 공통 메뉴"></header>
-<div class="page-title">
-  <h1>진수의 잡동사니 | Binary World</h1>
-  <p>다양한 웹 프로젝트들 모음</p>
-</div>
 
-<section class="intro">
-  <p>Binary World는 <strong>미니게임, 익명 투표, 랜덤 음식 추천, 상식 테스트, AI 외모 평가, 인생 망한 사람들 모임, 죽음 예측 테스트, 로또추첨기</strong> 등 다양한 웹 프로젝트를 제공하는 공간입니다. 재미있게 즐기며 유용한 정보도 얻어보세요.</p>
-</section>
+<main class="bw-home">
+  <section class="bw-home-hero" aria-label="Binary World 소개">
+    <div class="bw-home-hero-plane" aria-hidden="true"></div>
+    <div class="bw-home-hero-inner">
+      <div class="bw-home-hero-copy">
+        <p class="bw-home-brand">Binary World</p>
+        <h1 class="bw-home-headline">진수의 잡동사니</h1>
+        <p class="bw-home-lead">미니게임, 랜덤 추천, 테스트까지 — 가볍게 즐기는 웹 프로젝트 모음</p>
+        <div class="bw-home-cta">
+          <a class="bw-home-btn bw-home-btn-primary" href="#services">서비스 보기</a>
+          <a class="bw-home-btn bw-home-btn-ghost" href="https://game.binaryworld.kr">미니게임</a>
+        </div>
+      </div>
+      <div class="bw-home-hero-visual">
+        <img th:src="@{/img/radish.png}" src="/img/radish.png" alt="Binary World 마스코트" width="420" height="420" decoding="async">
+      </div>
+    </div>
+  </section>
 
-<section class="links">
-  <h2>🔗 서비스 바로가기</h2>
-  <ul>
-    <li><a href="/infra">🛠️ 인프라</a> - 아키텍처/CI·CD/보안/운영 정리</li>
-    <li><a href="https://life.binaryworld.kr">🍻 인생 망한 사람들 모임</a> - 인생 썰 푸는 익명 커뮤니티</li>
-    <li><a href="https://game.binaryworld.kr">🎮 미니게임 포털</a> - 간단하고 재미있는 미니게임 모음</li>
-    <li><a href="https://vote.binaryworld.kr">🗳️ 익명 투표</a> - 나만의 투표를 만들어 의견을 모아보세요</li>
-    <li><a href="https://food.binaryworld.kr">🍱 랜덤 음식 추천</a> - 오늘 뭐 먹을지 고민될 때 사용하세요</li>
-    <li><a href="https://quiz.binaryworld.kr">📚 상식 테스트</a> - 분야별 상식을 재미있게 테스트</li>
-    <li><a href="https://face.binaryworld.kr">🤖 AI 외모 평가</a> - AI가 재미로 외모 점수를 평가</li>
-    <li><a href="https://godofdeath.pages.dev/">👻 죽음 예측 테스트</a> - 심리 테스트로 재미있게 보는 죽음 예측</li>
-    <li><a href="https://kimchilotto.netlify.app/">🍀 깍두기의 로또 추첨기</a> - 깍두기와 함께하는 로또 번호 확인</li>
-  </ul>
-</section>
+  <section id="services" class="bw-home-section bw-home-services">
+    <div class="bw-home-section-head">
+      <h2>서비스</h2>
+      <p>지금 바로 열어볼 수 있는 Binary World 프로젝트들입니다.</p>
+    </div>
+    <div class="bw-home-grid">
+      <a class="bw-home-card" href="/infra">
+        <span class="bw-home-card-kicker">Infra</span>
+        <strong>인프라</strong>
+        <span>아키텍처 · CI/CD · 운영 정리</span>
+      </a>
+      <a class="bw-home-card" href="https://life.binaryworld.kr">
+        <span class="bw-home-card-kicker">Life</span>
+        <strong>인생 망한 사람들 모임</strong>
+        <span>인생 썰 푸는 익명 커뮤니티</span>
+      </a>
+      <a class="bw-home-card" href="https://game.binaryworld.kr">
+        <span class="bw-home-card-kicker">Game</span>
+        <strong>미니게임 포털</strong>
+        <span>간단하고 재미있는 미니게임 모음</span>
+      </a>
+      <a class="bw-home-card" href="https://vote.binaryworld.kr">
+        <span class="bw-home-card-kicker">Vote</span>
+        <strong>익명 투표</strong>
+        <span>나만의 투표를 만들어 의견을 모아보세요</span>
+      </a>
+      <a class="bw-home-card" href="https://food.binaryworld.kr">
+        <span class="bw-home-card-kicker">Food</span>
+        <strong>랜덤 음식 추천</strong>
+        <span>오늘 뭐 먹을지 고민될 때</span>
+      </a>
+      <a class="bw-home-card" href="https://quiz.binaryworld.kr">
+        <span class="bw-home-card-kicker">Quiz</span>
+        <strong>상식 테스트</strong>
+        <span>분야별 상식을 재미있게 테스트</span>
+      </a>
+      <a class="bw-home-card" href="https://face.binaryworld.kr">
+        <span class="bw-home-card-kicker">Face</span>
+        <strong>AI 외모 평가</strong>
+        <span>AI가 재미로 외모 점수를 평가</span>
+      </a>
+      <a class="bw-home-card" href="https://godofdeath.pages.dev/">
+        <span class="bw-home-card-kicker">Test</span>
+        <strong>죽음 예측 테스트</strong>
+        <span>심리 테스트로 재미있게 보는 예측</span>
+      </a>
+      <a class="bw-home-card" href="https://kimchilotto.netlify.app/">
+        <span class="bw-home-card-kicker">Lotto</span>
+        <strong>깍두기의 로또 추첨기</strong>
+        <span>깍두기와 함께하는 로또 번호 확인</span>
+      </a>
+    </div>
+  </section>
 
-<div id="bw-guestbook" aria-label="방명록"></div>
+  <div id="bw-guestbook" aria-label="방명록"></div>
 
-<section class="visitor-count">
-  <h2>👀 방문자 현황 25.07.06부터</h2>
-  <table class="visitor-table">
-    <thead>
-    <tr>
-      <th>구분</th>
-      <th>BinaryWorld</th>
-      <th>game</th>
-      <th>vote</th>
-      <th>food</th>
-      <th>quiz</th>
-      <th>face</th>
-      <th>총합계</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>일일</td>
-      <td id="daily-binaryworld">0</td>
-      <td id="daily-game">0</td>
-      <td id="daily-vote">0</td>
-      <td id="daily-food">0</td>
-      <td id="daily-quiz">0</td>
-      <td id="daily-face">0</td>
-      <td id="daily-total">0</td>
-    </tr>
-    <tr>
-      <td>전체</td>
-      <td id="total-binaryworld">0</td>
-      <td id="total-game">0</td>
-      <td id="total-vote">0</td>
-      <td id="total-food">0</td>
-      <td id="total-quiz">0</td>
-      <td id="total-face">0</td>
-      <td id="total-total">0</td>
-    </tr>
-    </tbody>
-  </table>
-</section>
+  <section class="bw-home-section bw-home-stats" aria-labelledby="visitor-heading">
+    <div class="bw-home-section-head">
+      <h2 id="visitor-heading">방문자 현황</h2>
+      <p>2025.07.06부터 집계한 사이트별 방문 수치입니다.</p>
+    </div>
+    <div class="bw-home-table-wrap">
+      <table class="bw-home-table">
+        <thead>
+        <tr>
+          <th>구분</th>
+          <th>BinaryWorld</th>
+          <th>game</th>
+          <th>vote</th>
+          <th>food</th>
+          <th>quiz</th>
+          <th>face</th>
+          <th>총합계</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>일일</td>
+          <td id="daily-binaryworld">0</td>
+          <td id="daily-game">0</td>
+          <td id="daily-vote">0</td>
+          <td id="daily-food">0</td>
+          <td id="daily-quiz">0</td>
+          <td id="daily-face">0</td>
+          <td id="daily-total">0</td>
+        </tr>
+        <tr>
+          <td>전체</td>
+          <td id="total-binaryworld">0</td>
+          <td id="total-game">0</td>
+          <td id="total-vote">0</td>
+          <td id="total-food">0</td>
+          <td id="total-quiz">0</td>
+          <td id="total-face">0</td>
+          <td id="total-total">0</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
 
 <footer id="global-footer" aria-label="Binary World 푸터"></footer>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // 1. 햄버거 메뉴 토글
-    const toggleBtn = document.querySelector('.nav-toggle');
-    const nav = document.querySelector('.nav-links');
-
-    if (toggleBtn && nav) {
-      toggleBtn.addEventListener('click', () => {
-        toggleBtn.classList.toggle('active');
-        nav.classList.toggle('open');
-      });
-    }
-
-    // 2. 테마 토글
-    const themeToggle = document.getElementById('themeToggle');
-    const themeLink = document.getElementById('theme-style');
-    const currentTheme = localStorage.getItem('theme') || 'dark';
-
-    applyTheme(currentTheme);
-
-    if (themeToggle && themeLink) {
-      themeToggle.addEventListener('click', () => {
-        const isDark = themeLink.getAttribute('href').includes('dark');
-        const nextTheme = isDark ? 'light' : 'dark';
-        applyTheme(nextTheme);
-      });
-    }
-
-    function applyTheme(theme) {
-      themeLink.setAttribute('href', `/css/main-${theme}.css`);
-      localStorage.setItem('theme', theme);
-    }
-
     Promise.all([
       fetch('/api/visit/today').then(res => res.json()),
       fetch('/api/visit/total').then(res => res.json())
     ]).then(([todayData, totalData]) => {
       const sites = ['BinaryWorld', 'game', 'vote', 'food', 'quiz', 'face'];
-
       let dailyTotal = 0;
       let totalTotal = 0;
 
       sites.forEach(site => {
         const today = todayData.find(d => d.pageName === site);
         const total = totalData.find(t => t.pageName === site);
-
         const todayCount = today ? today.visitCount : 0;
         const totalCount = total ? total.totalCount : 0;
 
         dailyTotal += todayCount;
         totalTotal += totalCount;
 
-        document.getElementById(`daily-${site.toLowerCase()}`).textContent = todayCount;
-        document.getElementById(`total-${site.toLowerCase()}`).textContent = totalCount;
+        document.getElementById('daily-' + site.toLowerCase()).textContent = todayCount;
+        document.getElementById('total-' + site.toLowerCase()).textContent = totalCount;
       });
 
       document.getElementById('daily-total').textContent = dailyTotal;
       document.getElementById('total-total').textContent = totalTotal;
     }).catch(err => {
       console.error(err);
-      alert('방문자 데이터를 불러오지 못했습니다.');
     });
-
-});
-
-
+  });
 </script>
 
 <script th:src="@{/common/header.js}" defer></script>

@@ -67,9 +67,17 @@
 
     if (themeLink) {
       const currentHref = themeLink.getAttribute('href') || '';
-      const nextHref = currentHref.includes('/css/main-')
-        ? currentHref.replace(/main-(light|dark)\.css/, 'main-' + nextTheme + '.css')
-        : '/css/main-' + nextTheme + '.css';
+      let nextHref = '/css/main-' + nextTheme + '.css';
+
+      if (/(home|main)-(light|dark)\.css/.test(currentHref)) {
+        nextHref = currentHref.replace(
+          /(home|main)-(light|dark)\.css/,
+          '$1-' + nextTheme + '.css'
+        );
+      } else if (/(light|dark)\.css/.test(currentHref)) {
+        nextHref = currentHref.replace(/(light|dark)\.css/, nextTheme + '.css');
+      }
+
       themeLink.setAttribute('href', nextHref);
     }
 
