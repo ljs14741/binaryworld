@@ -90,22 +90,22 @@
     '<div class="bw-gb-inner">' +
     '<div class="bw-gb-header">' +
     '<div>' +
-    '<h2 class="bw-gb-title">Guestbook</h2>' +
+    '<h2 class="bw-gb-title">방명록</h2>' +
     '<p class="bw-gb-subtitle">짧은 인사나 피드백을 남겨주세요.</p>' +
     '</div>' +
-    '<div class="bw-gb-count" data-gb-count>PAGE 1</div>' +
+    '<div class="bw-gb-count" data-gb-count>1페이지</div>' +
     '</div>' +
     '<form class="bw-gb-form" data-gb-form>' +
     '<div class="bw-gb-field">' +
-    '<label class="bw-gb-label" for="bw-gb-nickname">Nickname</label>' +
+    '<label class="bw-gb-label" for="bw-gb-nickname">닉네임</label>' +
     '<input id="bw-gb-nickname" class="bw-gb-input" name="nickname" type="text" maxlength="10" placeholder="닉네임" required autocomplete="nickname">' +
     '</div>' +
     '<div class="bw-gb-field">' +
-    '<label class="bw-gb-label" for="bw-gb-password">Password</label>' +
+    '<label class="bw-gb-label" for="bw-gb-password">비밀번호</label>' +
     '<input id="bw-gb-password" class="bw-gb-input" name="password" type="password" maxlength="20" placeholder="삭제용 비밀번호" required autocomplete="new-password">' +
     '</div>' +
     '<div class="bw-gb-field bw-gb-field-full">' +
-    '<label class="bw-gb-label" for="bw-gb-message">Message</label>' +
+    '<label class="bw-gb-label" for="bw-gb-message">내용</label>' +
     '<textarea id="bw-gb-message" class="bw-gb-textarea" name="content" maxlength="1000" placeholder="방문한 소감을 남겨주세요" required></textarea>' +
     '</div>' +
     '<div class="bw-gb-actions">' +
@@ -166,7 +166,7 @@
     currentPage = page.number || 0;
     totalPages = Math.max(page.totalPages || 1, 1);
     pageInfo.textContent = currentPage + 1 + ' / ' + totalPages;
-    countBadge.textContent = 'PAGE ' + (currentPage + 1);
+    countBadge.textContent = currentPage + 1 + '페이지';
     prevBtn.disabled = page.first === true || currentPage <= 0;
     nextBtn.disabled =
       page.last === true || currentPage >= totalPages - 1;
