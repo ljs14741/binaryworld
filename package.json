@@ -5,10 +5,12 @@
     "build:gnb": "tailwindcss -i ./src/main/tailwind/header.css -o ./src/main/resources/static/common/header.css --minify",
     "build:footer": "tailwindcss -i ./src/main/tailwind/footer.css -o ./src/main/resources/static/common/footer.css --minify",
     "build:legal": "tailwindcss -i ./src/main/tailwind/legal.css -o ./src/main/resources/static/common/legal.css --minify",
-    "build:common": "npm run build:gnb && npm run build:footer && npm run build:legal",
+    "build:guestbook": "tailwindcss -i ./src/main/tailwind/guestbook.css -o ./src/main/resources/static/common/guestbook.css --minify",
+    "build:common": "npm run build:gnb && npm run build:footer && npm run build:legal && npm run build:guestbook",
     "watch:gnb": "tailwindcss -i ./src/main/tailwind/header.css -o ./src/main/resources/static/common/header.css --watch",
     "watch:footer": "tailwindcss -i ./src/main/tailwind/footer.css -o ./src/main/resources/static/common/footer.css --watch",
-    "watch:legal": "tailwindcss -i ./src/main/tailwind/legal.css -o ./src/main/resources/static/common/legal.css --watch"
+    "watch:legal": "tailwindcss -i ./src/main/tailwind/legal.css -o ./src/main/resources/static/common/legal.css --watch",
+    "watch:guestbook": "tailwindcss -i ./src/main/tailwind/guestbook.css -o ./src/main/resources/static/common/guestbook.css --watch"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
