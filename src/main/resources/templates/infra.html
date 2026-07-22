@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- 공통 테마 -->
     <link rel="stylesheet" th:href="@{/common/header.css}">
+    <link rel="stylesheet" th:href="@{/common/footer.css}">
     <link id="theme-style" rel="stylesheet" th:href="@{/css/main-light.css}" href="/css/main-light.css" />
     <!-- 이 페이지 전용 -->
     <link rel="stylesheet" th:href="@{/css/infra.css}" href="/css/infra.css" />
@@ -193,7 +194,8 @@
     </div>
 </section>
 
-<th:block th:include="common/footer"></th:block>
+<footer id="global-footer" aria-label="Binary World 푸터"></footer>
 <script th:src="@{/common/header.js}" defer></script>
+<script th:src="@{/common/footer.js}" defer></script>
 </body>
 </html>

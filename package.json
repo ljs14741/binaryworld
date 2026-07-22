@@ -3,7 +3,10 @@
   "private": true,
   "scripts": {
     "build:gnb": "tailwindcss -i ./src/main/tailwind/header.css -o ./src/main/resources/static/common/header.css --minify",
-    "watch:gnb": "tailwindcss -i ./src/main/tailwind/header.css -o ./src/main/resources/static/common/header.css --watch"
+    "build:footer": "tailwindcss -i ./src/main/tailwind/footer.css -o ./src/main/resources/static/common/footer.css --minify",
+    "build:common": "npm run build:gnb && npm run build:footer",
+    "watch:gnb": "tailwindcss -i ./src/main/tailwind/header.css -o ./src/main/resources/static/common/header.css --watch",
+    "watch:footer": "tailwindcss -i ./src/main/tailwind/footer.css -o ./src/main/resources/static/common/footer.css --watch"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",

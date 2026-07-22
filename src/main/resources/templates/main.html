@@ -55,6 +55,7 @@
   <!-- 폰트 + 스타일 -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/common/header.css}">
+  <link rel="stylesheet" th:href="@{/common/footer.css}">
   <link id="theme-style" rel="stylesheet" th:href="@{/css/main-light.css}">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6890085609044109"
@@ -156,7 +157,7 @@
   </table>
 </section>
 
-<th:block th:include="common/footer"></th:block>
+<footer id="global-footer" aria-label="Binary World 푸터"></footer>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -355,5 +356,6 @@
 </script>
 
 <script th:src="@{/common/header.js}" defer></script>
+<script th:src="@{/common/footer.js}" defer></script>
 </body>
 </html>

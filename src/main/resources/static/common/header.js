@@ -97,7 +97,13 @@
   }
 
   function applyTheme(theme) {
-    applyHeaderTheme(applyPageTheme(theme));
+    const nextTheme = applyPageTheme(theme);
+    applyHeaderTheme(nextTheme);
+    document.dispatchEvent(
+      new CustomEvent('bw:theme-change', {
+        detail: { theme: nextTheme },
+      })
+    );
   }
 
   ensureFonts();
