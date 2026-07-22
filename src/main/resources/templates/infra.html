@@ -5,6 +5,7 @@
     <title>Infra Portfolio | BinaryWorld</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- 공통 테마 -->
+    <link rel="stylesheet" th:href="@{/common/header.css}">
     <link id="theme-style" rel="stylesheet" th:href="@{/css/main-light.css}" href="/css/main-light.css" />
     <!-- 이 페이지 전용 -->
     <link rel="stylesheet" th:href="@{/css/infra.css}" href="/css/infra.css" />
@@ -20,7 +21,7 @@
     </script>
 </head>
 <body>
-<th:block th:include="common/header"></th:block>
+<header id="global-header" aria-label="Binary World 공통 메뉴"></header>
 
 <!-- ========== Hero ========== -->
 <section class="infra-hero">
@@ -193,5 +194,6 @@
 </section>
 
 <th:block th:include="common/footer"></th:block>
+<script th:src="@{/common/header.js}" defer></script>
 </body>
 </html>
