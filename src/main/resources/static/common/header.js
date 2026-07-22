@@ -69,9 +69,9 @@
       const currentHref = themeLink.getAttribute('href') || '';
       let nextHref = '/css/main-' + nextTheme + '.css';
 
-      if (/(home|main)-(light|dark)\.css/.test(currentHref)) {
+      if (/(home|main|infra)-(light|dark)\.css/.test(currentHref)) {
         nextHref = currentHref.replace(
-          /(home|main)-(light|dark)\.css/,
+          /(home|main|infra)-(light|dark)\.css/,
           '$1-' + nextTheme + '.css'
         );
       } else if (/(light|dark)\.css/.test(currentHref)) {
