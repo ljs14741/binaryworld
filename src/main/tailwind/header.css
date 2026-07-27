@@ -388,27 +388,34 @@
   .bw-gnb-nav[data-open="true"] .bw-gnb-link:nth-child(6) {
     animation-delay: 0.18s;
   }
+  .bw-gnb-nav[data-open="true"] .bw-gnb-link:nth-child(7) {
+    animation-delay: 0.21s;
+  }
 
   .bw-gnb-link {
-    padding: 0.9rem 1rem;
+    padding: 0.9rem 1rem 0.9rem 1.35rem;
     font-size: 1rem;
   }
 
+  /* 모바일: 왼쪽 얇은 세로 인디케이터 (텍스트와 겹치지 않도록) */
   .bw-gnb-link::after {
-    left: 1rem;
+    left: 0.45rem;
     right: auto;
-    width: 1.1rem;
-    bottom: 50%;
-    transform: translateY(50%) scaleX(0);
+    bottom: auto;
+    top: 50%;
+    width: 2.5px;
+    height: 1.15rem;
+    transform: translateY(-50%) scaleY(0);
+    transform-origin: center;
   }
 
   .bw-gnb-link:hover::after,
   .bw-gnb-link[aria-current="page"]::after {
-    transform: translateY(50%) scaleX(1);
+    transform: translateY(-50%) scaleY(1);
   }
 
   .bw-gnb-link[aria-current="page"] {
-    padding-left: 1.55rem;
+    padding-left: 1.35rem;
   }
 }
 

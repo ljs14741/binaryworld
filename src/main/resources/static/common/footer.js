@@ -24,6 +24,7 @@
     { label: '음식추천', href: 'https://food.binaryworld.kr' },
     { label: '상식테스트', href: 'https://quiz.binaryworld.kr' },
     { label: 'AI 외모평가', href: 'https://face.binaryworld.kr' },
+    { label: '모바일청첩장', href: 'https://wedding.binaryworld.kr' },
   ];
 
   function ensureFonts() {
