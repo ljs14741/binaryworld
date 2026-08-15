@@ -18,7 +18,8 @@
   ];
 
   const serviceLinks = [
-    { label: '인생망한사람', href: 'https://life.binaryworld.kr' },
+    // { label: '인생망한사람', href: 'https://life.binaryworld.kr' },
+    { label: '짝꿍지도', href: 'https://map.binaryworld.kr' },
     { label: '게임', href: 'https://game.binaryworld.kr' },
     { label: '익명투표', href: 'https://vote.binaryworld.kr' },
     { label: '음식추천', href: 'https://food.binaryworld.kr' },
