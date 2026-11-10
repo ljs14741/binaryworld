@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>방명록 답변 | Binary World 관리자</title>
+  <link rel="icon" href="/img/favicon/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/common/admin.css">
+</head>
+<body>
+<header class="adm-top">
+  <h1>방명록 답변</h1>
+  <form method="post" action="/admin/logout"><button type="submit" class="adm-ghost">로그아웃</button></form>
+</header>
+
+<main class="adm-wrap">
+  <p class="adm-notice" th:if="${notice}" th:text="${notice}"></p>
+  <p class="adm-sub">모든 사이트(게임·투표·퀴즈·외모·음식·메인)가 같은 방명록을 씁니다. 답변은 바로 모든 사이트에 보입니다.</p>
+
+  <ul class="adm-list">
+    <li th:each="g : ${items.content}" th:id="'gb-' + ${g.id}" class="adm-item" th:classappend="${g.reply != null} ? 'is-replied'">
+      <div class="adm-meta">
+        <strong th:text="${g.nickname}">닉네임</strong>
+        <span th:text="${g.createdAt != null} ? ${#temporals.format(g.createdAt, 'yyyy-MM-dd HH:mm')} : ''"></span>
+        <em th:if="${g.reply != null}">답변함</em>
+      </div>
+      <p class="adm-content" th:text="${g.content}">내용</p>
+      <form method="post" th:action="@{/admin/guestbook/{id}/reply(id=${g.id})}" class="adm-reply">
+        <input type="hidden" name="page" th:value="${items.number}">
+        <textarea name="reply" rows="2" maxlength="2000" placeholder="개발자 답변 (비우고 저장하면 답변 삭제)" th:text="${g.reply}"></textarea>
+        <div class="adm-reply-foot">
+          <span th:if="${g.repliedAt != null}" th:text="'답변 ' + ${#temporals.format(g.repliedAt, 'MM-dd HH:mm')}"></span>
+          <button type="submit">저장</button>
+        </div>
+      </form>
+    </li>
+  </ul>
+
+  <nav class="adm-pager">
+    <a th:if="${!items.first}" th:href="@{/admin(page=${items.number - 1})}">← 이전</a>
+    <span th:text="${items.number + 1} + ' / ' + ${items.totalPages}"></span>
+    <a th:if="${!items.last}" th:href="@{/admin(page=${items.number + 1})}">다음 →</a>
+  </nav>
+</main>
+</body>
+</html>

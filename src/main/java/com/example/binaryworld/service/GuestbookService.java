@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +37,8 @@ public class GuestbookService {
                         .nickname(g.getNickname())
                         .content(g.getContent())
                         .createdAt(g.getCreatedAt())
+                        .reply(g.getReply())
+                        .repliedAt(g.getRepliedAt())
                         .build())
                 .collect(Collectors.toList());
     }
@@ -59,6 +62,21 @@ public class GuestbookService {
                         .nickname(g.getNickname())
                         .content(g.getContent())
                         .createdAt(g.getCreatedAt())
+                        .reply(g.getReply())
+                        .repliedAt(g.getRepliedAt())
                         .build());
+    }
+
+    // 개발자 답변 달기·고치기. 빈 내용이면 답변을 지움
+    public boolean reply(Long id, String text) {
+        String t = text == null ? "" : text.trim();
+        return guestbookRepository.findById(id)
+                .map(g -> {
+                    g.setReply(t.isEmpty() ? null : t);
+                    g.setRepliedAt(t.isEmpty() ? null : LocalDateTime.now());
+                    guestbookRepository.save(g);
+                    return true;
+                })
+                .orElse(false);
     }
 }

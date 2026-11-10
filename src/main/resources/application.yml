@@ -3,6 +3,10 @@ server:
   servlet:
     session:
       timeout: 120m
+      # 관리자 로그인(/admin) 세션 쿠키. 다른 사이트에서 보낸 POST 에는 안 실리게 lax
+      cookie:
+        http-only: true
+        same-site: lax
 
 spring:
   security:

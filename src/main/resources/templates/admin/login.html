@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>관리자 로그인 | Binary World</title>
+  <link rel="icon" href="/img/favicon/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/common/admin.css">
+</head>
+<body>
+<main class="adm-login">
+  <form class="adm-card" method="post" action="/admin/login">
+    <h1>Binary World 관리자</h1>
+    <p class="adm-sub">방명록 개발자 답변</p>
+    <p class="adm-error" th:if="${!configured}">관리자 설정 오류: 서버에 ADMIN_SECRET(12자 이상)이 없습니다.</p>
+    <p class="adm-error" th:if="${error}" th:text="${error}"></p>
+    <input type="password" name="password" placeholder="비밀번호" autocomplete="current-password" required autofocus>
+    <button type="submit">로그인</button>
+  </form>
+</main>
+</body>
+</html>

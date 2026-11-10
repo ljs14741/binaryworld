@@ -129,6 +129,25 @@
   const countBadge = mount.querySelector('[data-gb-count]');
   const submitBtn = mount.querySelector('[data-gb-submit]');
 
+  // 개발자 답변 (binaryworld.kr/admin 에서 작성)
+  function renderReply(item) {
+    if (!item.reply) {
+      return '';
+    }
+    return (
+      '<div class="bw-gb-reply">' +
+      '<div class="bw-gb-reply-head">💬 개발자 답변' +
+      '<span class="bw-gb-reply-date">' +
+      escapeHtml(formatDate(item.repliedAt)) +
+      '</span>' +
+      '</div>' +
+      '<p class="bw-gb-reply-text">' +
+      escapeHtml(item.reply) +
+      '</p>' +
+      '</div>'
+    );
+  }
+
   function renderItems(items) {
     if (!items.length) {
       list.innerHTML =
@@ -151,6 +170,7 @@
           '<p class="bw-gb-content">' +
           escapeHtml(item.content) +
           '</p>' +
+          renderReply(item) +
           '<div class="bw-gb-item-actions">' +
           '<button class="bw-gb-delete" type="button" data-id="' +
           escapeHtml(item.id) +

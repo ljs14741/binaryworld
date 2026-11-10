@@ -261,6 +261,42 @@
   white-space: pre-wrap;
 }
 
+/* 개발자 답변 */
+.bw-gb-reply {
+  margin: 0.75rem 0 0;
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.8rem;
+  border-left: 3px solid var(--bw-accent);
+  background: var(--bw-accent-soft);
+}
+
+.bw-gb-reply-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.3rem;
+  color: var(--bw-accent);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.bw-gb-reply-date {
+  color: var(--bw-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.bw-gb-reply-text {
+  margin: 0;
+  color: var(--bw-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.6;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
 .bw-gb-item-actions {
   display: flex;
   justify-content: flex-end;
