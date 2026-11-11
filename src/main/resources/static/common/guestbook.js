@@ -39,6 +39,9 @@
   }
 
   function resolveTheme() {
+    // .binaryworld.kr 공용 쿠키 먼저 (header.js 가 저장)
+    const cookie = document.cookie.match(/(?:^|;\s*)bw_theme=(light|dark)/);
+    if (cookie) return cookie[1];
     try {
       const stored = localStorage.getItem('theme');
       if (stored === 'light' || stored === 'dark') {

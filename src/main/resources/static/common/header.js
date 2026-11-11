@@ -45,7 +45,23 @@
     document.head.appendChild(fonts);
   }
 
-  function resolveTheme() {
+  // 테마는 .binaryworld.kr 공용 쿠키에 같이 저장함 (localStorage 는 서브도메인마다 따로라 이동하면 테마가 풀림)
+  const THEME_COOKIE = 'bw_theme';
+
+  function readThemeCookie() {
+    const m = document.cookie.match(/(?:^|;\s*)bw_theme=(light|dark)/);
+    return m ? m[1] : null;
+  }
+
+  function writeThemeCookie(theme) {
+    const domain = /(^|\.)binaryworld\.kr$/.test(location.hostname) ? '; domain=.binaryworld.kr' : '';
+    document.cookie = THEME_COOKIE + '=' + theme + '; path=/; max-age=31536000; SameSite=Lax' + domain;
+  }
+
+  // 사용자가 고른 테마 (쿠키 → 이 서브도메인 localStorage 순). 없으면 null
+  function storedTheme() {
+    const cookie = readThemeCookie();
+    if (cookie) return cookie;
     try {
       const stored = localStorage.getItem('theme');
       if (stored === 'light' || stored === 'dark') {
@@ -54,6 +70,12 @@
     } catch {
       // ignore storage errors
     }
+    return null;
+  }
+
+  function resolveTheme() {
+    const stored = storedTheme();
+    if (stored) return stored;
 
     const themeLink = document.getElementById('theme-style');
     if (themeLink && themeLink.getAttribute('href')) {
@@ -63,7 +85,7 @@
     return 'dark';
   }
 
-  function applyPageTheme(theme) {
+  function applyPageTheme(theme, persist) {
     const nextTheme = theme === 'light' ? 'light' : 'dark';
     const themeLink = document.getElementById('theme-style');
 
@@ -83,10 +105,14 @@
       themeLink.setAttribute('href', nextHref);
     }
 
-    try {
-      localStorage.setItem('theme', nextTheme);
-    } catch {
-      // ignore storage errors
+    // 페이지 기본값은 저장하지 않음. 고른 값만 쿠키·localStorage 에 맞춰 둠
+    if (persist) {
+      writeThemeCookie(nextTheme);
+      try {
+        localStorage.setItem('theme', nextTheme);
+      } catch {
+        // ignore storage errors
+      }
     }
 
     return nextTheme;
@@ -106,8 +132,8 @@
     }
   }
 
-  function applyTheme(theme) {
-    const nextTheme = applyPageTheme(theme);
+  function applyTheme(theme, persist) {
+    const nextTheme = applyPageTheme(theme, persist);
     applyHeaderTheme(nextTheme);
     document.dispatchEvent(
       new CustomEvent('bw:theme-change', {
@@ -174,7 +200,7 @@
     '</div>' +
     '</div>';
 
-  applyTheme(resolveTheme());
+  applyTheme(resolveTheme(), !!storedTheme());
 
   const toggle = mount.querySelector('.bw-gnb-toggle');
   const navigation = mount.querySelector('.bw-gnb-nav');
@@ -226,7 +252,7 @@
       function (event) {
         event.preventDefault();
         event.stopImmediatePropagation();
-        applyTheme(resolveTheme() === 'dark' ? 'light' : 'dark');
+        applyTheme(resolveTheme() === 'dark' ? 'light' : 'dark', true);
       },
       true
     );
@@ -234,7 +260,14 @@
 
   window.addEventListener('storage', function (event) {
     if (event.key === 'theme') {
-      applyTheme(resolveTheme());
+      applyTheme(resolveTheme(), true);
+    }
+  });
+
+  // 뒤로 가기로 캐시된 페이지가 뜨면 그 사이 다른 서브도메인에서 바꾼 테마로 맞춤
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted) {
+      applyTheme(resolveTheme(), !!storedTheme());
     }
   });
 
