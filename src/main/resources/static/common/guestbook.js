@@ -68,6 +68,21 @@
     mount.dataset.theme = theme === 'light' ? 'light' : 'dark';
   }
 
+  // 욕만 ** 로 가려서 보여줌 (글은 그대로 저장됨, 관리자 화면은 원문)
+  const BAD_WORDS = ['씨발', '시발', '씨팔', 'ㅆㅂ', 'ㅅㅂ', '병신', '븅신', '개새끼', '좆', '미친놈', '미친년', '니애미', '느금마'];
+  // 욕이 들어 있는 정상 낱말은 건드리지 않음
+  const SAFE_WORDS = ['시발점'];
+  const BAD_RE = new RegExp(
+    SAFE_WORDS.map(function (w) { return '(' + w + ')'; }).join('|') + '|' + BAD_WORDS.join('|'),
+    'g'
+  );
+
+  function maskBadWords(value) {
+    return String(value == null ? '' : value).replace(BAD_RE, function (m, safe) {
+      return safe || '**';
+    });
+  }
+
   function escapeHtml(value) {
     return String(value == null ? '' : value)
       .replace(/&/g, '&amp;')
@@ -164,14 +179,14 @@
           '<li class="bw-gb-item">' +
           '<div class="bw-gb-item-top">' +
           '<strong class="bw-gb-name">' +
-          escapeHtml(item.nickname) +
+          escapeHtml(maskBadWords(item.nickname)) +
           '</strong>' +
           '<span class="bw-gb-date">' +
           escapeHtml(formatDate(item.createdAt)) +
           '</span>' +
           '</div>' +
           '<p class="bw-gb-content">' +
-          escapeHtml(item.content) +
+          escapeHtml(maskBadWords(item.content)) +
           '</p>' +
           renderReply(item) +
           '<div class="bw-gb-item-actions">' +
