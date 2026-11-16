@@ -12,13 +12,14 @@
 
   const navigationItems = [
     // { label: '인생망한사람', href: 'https://life.binaryworld.kr' },
+    { label: '별말씀', href: 'https://star.binaryworld.kr', newTab: true },
     { label: '짝꿍지도', href: 'https://map.binaryworld.kr' },
     { label: '게임', href: 'https://game.binaryworld.kr' },
     { label: '익명투표', href: 'https://vote.binaryworld.kr' },
     { label: '음식추천', href: 'https://food.binaryworld.kr' },
     { label: '상식테스트', href: 'https://quiz.binaryworld.kr' },
     { label: 'AI 외모평가', href: 'https://face.binaryworld.kr' },
-    { label: '모바일청첩장', href: 'https://wedding.binaryworld.kr' },
+    { label: '모바일청첩장', href: 'https://wedding.binaryworld.kr', newTab: true },
   ];
 
   function ensureFonts() {
@@ -155,12 +156,15 @@
       }
 
       const currentAttribute = isCurrent ? ' aria-current="page"' : '';
+      // 돌아올 메뉴가 없는 사이트는 새 창으로 엶
+      const targetAttribute = item.newTab ? ' target="_blank" rel="noopener"' : '';
 
       return (
         '<a class="bw-gnb-link" href="' +
         item.href +
         '"' +
         currentAttribute +
+        targetAttribute +
         '>' +
         item.label +
         '</a>'
