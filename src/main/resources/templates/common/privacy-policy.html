@@ -3,32 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy | Binary World</title>
+  <title>개인정보처리방침 | 진수의 잡동사니 - Binary World</title>
 
-  <meta name="description" content="Binary World의 개인정보처리방침 안내 페이지입니다. 본 사이트는 회원가입 없이 자유롭게 이용 가능하며, 쿠키 및 광고 관련 내용을 안내합니다.">
-  <meta name="keywords" content="Privacy Policy, 개인정보처리방침, Binary World, 구글 애드센스, 쿠키 사용">
+  <meta name="description" content="진수의 잡동사니(Binary World)가 어떤 정보를 왜 받고, 얼마나 보관하고, 어떻게 지울 수 있는지 안내합니다.">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Binary World">
+  <link rel="canonical" href="https://binaryworld.kr/privacy-policy">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Privacy Policy | Binary World">
-  <meta property="og:description" content="Binary World 개인정보처리방침 안내 페이지. 쿠키 및 광고 관련 내용 확인.">
+  <meta property="og:title" content="개인정보처리방침 | 진수의 잡동사니">
+  <meta property="og:description" content="어떤 정보를 왜 받고, 얼마나 보관하고, 어떻게 지울 수 있는지 안내합니다.">
   <meta property="og:image" content="https://binaryworld.kr/img/radish.png">
   <meta property="og:url" content="https://binaryworld.kr/privacy-policy">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Privacy Policy | Binary World">
-  <meta name="twitter:description" content="Binary World 개인정보처리방침 안내 페이지. 쿠키 및 광고 관련 내용 확인.">
-  <meta name="twitter:image" content="https://binaryworld.kr/img/radish.png">
-
   <link rel="icon" href="/img/favicon/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
-  <meta name="theme-color" content="#0b0d10">
+  <meta name="theme-color" content="#0a0c10">
 
+  <link id="bw-pretendard" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" th:href="@{/common/header.css}">
   <link rel="stylesheet" th:href="@{/common/footer.css}">
-  <link rel="stylesheet" th:href="@{/common/legal.css}">
-  <link id="theme-style" rel="stylesheet" th:href="@{/css/main-dark.css}">
+  <link rel="stylesheet" th:href="@{/css/home.css}">
+  <link id="theme-style" rel="stylesheet" th:href="@{/css/home-light.css}">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6890085609044109"
           crossorigin="anonymous"></script>
@@ -36,54 +32,141 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0TSFJBQ41N');
+    // 로컬 확인할 땐 집계 안 함
+    if (/(^|\.)binaryworld\.kr$/.test(location.hostname)) {
+      gtag('js', new Date());
+      gtag('config', 'G-0TSFJBQ41N');
+    }
   </script>
 </head>
-<body class="bw-legal-page" data-theme="dark">
+<body class="bw-site">
 <header id="global-header" aria-label="Binary World 공통 메뉴"></header>
 
-<main class="bw-legal-main">
-  <section class="bw-legal-hero">
-    <p class="bw-legal-eyebrow">Privacy</p>
-    <h1>개인정보처리방침</h1>
-    <p class="bw-legal-lead">
-      Binary World는 회원가입 없이 이용할 수 있는 개인 웹 프로젝트 모음입니다.
-      수집하는 정보와 쿠키 사용에 대해 아래와 같이 안내합니다.
-    </p>
+<main>
+  <section class="bw-page-hero">
+    <div class="bw-hero-bg" aria-hidden="true"></div>
+    <div class="bw-page-hero-inner">
+      <p class="bw-eyebrow"><span class="bw-dot" aria-hidden="true"></span>Privacy</p>
+      <h1 class="bw-page-title">개인정보처리방침</h1>
+      <p class="bw-page-lead">
+        진수의 잡동사니(Binary World)가 어떤 정보를 왜 받고, 얼마나 두고, 어떻게 지울 수 있는지 적어 둔 곳이에요.
+        회원가입이 없어서 이름·전화번호·이메일 같은 정보는 따로 받지 않아요.
+      </p>
+    </div>
   </section>
 
-  <section class="bw-legal-panel">
-    <article class="bw-legal-card">
-      <h2>개인정보 수집</h2>
+  <div class="bw-about bw-policy">
+    <section class="bw-about-block">
+      <h2>이 방침이 적용되는 곳</h2>
       <p>
-        Binary World는 회원가입 기능이 없으며, 사용자의 개인정보를 직접적으로 수집하지 않습니다.
+        binaryworld.kr 과 미니게임(game), 익명 투표(vote), 점심 메뉴 추천(food), 상식 테스트(quiz), AI 외모 평가(face)에 적용돼요.
       </p>
-    </article>
-
-    <article class="bw-legal-card">
-      <h2>쿠키 및 광고</h2>
       <p>
-        본 사이트는 Google AdSense 광고 및 사이트 트래픽 분석을 위해 쿠키를 사용할 수 있습니다.
-        쿠키는 사용자 맞춤 광고 제공과 사이트 이용 분석에 사용되며,
-        사용자는 브라우저 설정을 통해 쿠키 사용을 거부할 수 있습니다.
+        아래 서비스는 로그인 등 다루는 정보가 달라서 각자 방침을 따로 두고 있어요.
       </p>
-    </article>
+      <ul class="bw-policy-links">
+        <li><a href="https://map.binaryworld.kr/privacy-policy">짝꿍지도 개인정보처리방침</a></li>
+        <li><a href="https://star.binaryworld.kr/ko/privacy" target="_blank" rel="noopener">별말씀 개인정보처리방침</a></li>
+        <li><a href="https://wedding.binaryworld.kr/privacy" target="_blank" rel="noopener">모바일 청첩장 개인정보처리방침</a></li>
+      </ul>
+    </section>
 
-    <article class="bw-legal-card">
-      <h2>적용 일자</h2>
-      <p>이 개인정보처리방침은 2025년 7월 2일부터 적용됩니다.</p>
-      <div class="bw-legal-meta">
-        <a class="bw-legal-link" href="/contact">문의하기</a>
+    <section class="bw-about-block">
+      <h2>직접 입력해서 저장되는 정보</h2>
+      <p>아래 기능을 쓸 때 입력한 내용만 저장돼요. 쓰지 않으면 아무것도 남지 않아요.</p>
+      <div class="bw-table-wrap">
+        <table class="bw-table">
+          <thead>
+          <tr><th>기능</th><th>저장하는 것</th><th>왜</th><th>얼마나</th></tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td data-label="기능">방명록<br><small>모든 사이트</small></td>
+            <td data-label="저장하는 것">닉네임, 삭제용 비밀번호, 글 내용, 작성 시각</td>
+            <td data-label="왜">글을 보여 주고, 쓴 사람만 지울 수 있게</td>
+            <td data-label="얼마나">직접 지우거나 운영자가 지울 때까지</td>
+          </tr>
+          <tr>
+            <td data-label="기능">게임 랭킹</td>
+            <td data-label="저장하는 것">닉네임, 점수, 기록 시각</td>
+            <td data-label="왜">랭킹 표시</td>
+            <td data-label="얼마나">랭킹을 운영하는 동안</td>
+          </tr>
+          <tr>
+            <td data-label="기능">회사 부수기</td>
+            <td data-label="저장하는 것">입력한 회사 이름, 상사 호칭(예: 김 부장), 부순 횟수</td>
+            <td data-label="왜">회사·동네·상사 랭킹 표시 (누가 했는지는 남기지 않아요)</td>
+            <td data-label="얼마나">랭킹을 운영하는 동안</td>
+          </tr>
+          <tr>
+            <td data-label="기능">익명 투표</td>
+            <td data-label="저장하는 것">투표·모임 제목과 선택지, 투표·모임 비밀번호, 투표 결과, 중복 투표를 막기 위한 접속 세션 값</td>
+            <td data-label="왜">투표 진행과 결과 표시</td>
+            <td data-label="얼마나">투표를 운영하는 동안 (요청하면 지워요)</td>
+          </tr>
+          <tr>
+            <td data-label="기능">AI 외모 평가</td>
+            <td data-label="저장하는 것">올린 사진은 저장하지 않아요</td>
+            <td data-label="왜">평가를 위해 OpenAI API로 보내고, 결과만 화면에 보여 줘요</td>
+            <td data-label="얼마나">우리 서버에는 남지 않아요 (OpenAI의 API 데이터 정책을 따름)</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
-    </article>
-  </section>
+      <p class="bw-policy-tip">닉네임이나 글에 실명·연락처처럼 나를 알아볼 수 있는 내용은 적지 않는 걸 권해요.</p>
+    </section>
+
+    <section class="bw-about-block">
+      <h2>자동으로 쓰이는 쿠키와 저장소</h2>
+      <div class="bw-table-wrap">
+        <table class="bw-table">
+          <thead>
+          <tr><th>이름</th><th>용도</th><th>보관</th></tr>
+          </thead>
+          <tbody>
+          <tr><td data-label="이름">visited</td><td data-label="용도">오늘 방문 수를 한 번만 세기 위해</td><td data-label="보관">그날 자정까지</td></tr>
+          <tr><td data-label="이름">bw_theme, theme</td><td data-label="용도">고른 화면 테마(밝게·어둡게) 기억</td><td data-label="보관">1년 (theme 은 브라우저에 남음)</td></tr>
+          <tr><td data-label="이름">Google Analytics 쿠키</td><td data-label="용도">어떤 페이지를 많이 보는지 같은 방문 통계</td><td data-label="보관">Google 정책에 따름</td></tr>
+          <tr><td data-label="이름">Google AdSense 쿠키</td><td data-label="용도">광고 표시와 맞춤 광고</td><td data-label="보관">Google 정책에 따름</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Google 은 이 사이트와 다른 사이트 방문 기록을 바탕으로 광고를 보여 줄 수 있어요.
+        맞춤 광고는 <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google 광고 설정</a>에서 끌 수 있고,
+        쿠키는 브라우저 설정에서 막을 수 있어요. 막아도 사이트는 대부분 그대로 쓸 수 있어요.
+      </p>
+    </section>
+
+    <section class="bw-about-block">
+      <h2>밖으로 보내는 정보</h2>
+      <p>저장한 정보를 팔거나 다른 곳에 넘기지 않아요. 다만 기능을 위해 아래 서비스를 써요.</p>
+      <ul class="bw-policy-links">
+        <li><b>Google</b> — 방문 통계(Analytics)와 광고(AdSense)</li>
+        <li><b>OpenAI</b> — AI 외모 평가 사진 분석</li>
+        <li><b>카카오</b> — 카카오톡 공유 버튼을 눌렀을 때만 공유 내용 전달</li>
+      </ul>
+    </section>
+
+    <section class="bw-about-block">
+      <h2>지우고 싶을 때</h2>
+      <p>
+        방명록 글은 쓸 때 정한 비밀번호로 바로 지울 수 있어요.
+        그 밖의 기록을 지우고 싶거나 궁금한 점이 있으면 <a href="mailto:ljs14741@gmail.com">ljs14741@gmail.com</a>으로 알려 주세요. 확인하는 대로 처리할게요.
+      </p>
+    </section>
+
+    <section class="bw-about-block">
+      <h2>운영자와 적용 일자</h2>
+      <p>운영자: 이진수 (Binary) · <a href="mailto:ljs14741@gmail.com">ljs14741@gmail.com</a></p>
+      <p>이 방침은 2026년 11월 21일부터 적용돼요. 바뀌면 이 페이지에서 알려 드릴게요. (이전 방침: 2025년 7월 2일)</p>
+    </section>
+  </div>
 </main>
 
 <footer id="global-footer" aria-label="Binary World 푸터"></footer>
 
 <script th:src="@{/common/header.js}" defer></script>
 <script th:src="@{/common/footer.js}" defer></script>
-<script th:src="@{/common/legal.js}" defer></script>
 </body>
 </html>

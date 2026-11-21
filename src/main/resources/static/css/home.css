@@ -1198,6 +1198,169 @@
   }
 }
 
+/* ===== 문의·개인정보 ===== */
+.bw-contact-mail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.bw-contact-mail h2 {
+  margin-bottom: 0.3rem;
+}
+
+.bw-contact-note {
+  margin-top: 1.2rem !important;
+  font-size: 0.92rem;
+}
+
+.bw-table-wrap {
+  margin: 0.4rem 0 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--bw-border);
+  border-radius: 16px;
+}
+
+.bw-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.bw-table th,
+.bw-table td {
+  padding: 0.8rem 0.95rem;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid var(--bw-border);
+}
+
+.bw-table thead th {
+  border-top: 0;
+  background: var(--bw-bg);
+  color: var(--bw-muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.bw-table td {
+  color: var(--bw-muted);
+}
+
+.bw-table td:first-child {
+  color: var(--bw-text);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.bw-table small {
+  color: var(--bw-faint);
+  font-weight: 500;
+}
+
+.bw-policy-links {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--bw-muted);
+  line-height: 1.9;
+}
+
+.bw-policy-links b {
+  color: var(--bw-text);
+}
+
+.bw-policy-tip {
+  font-size: 0.9rem;
+}
+
+/* ===== 오류 페이지 ===== */
+.bw-error {
+  min-height: calc(100svh - var(--bw-header-height, 64px) - 120px);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 3rem 1.25rem;
+}
+
+.bw-error-code {
+  margin: 0;
+  font-size: clamp(5rem, 18vw, 9rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  background: linear-gradient(100deg, var(--bw-accent) 0%, #38bdf8 45%, var(--bw-accent-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bw-error h1 {
+  margin: 0.6rem 0 0.6rem;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.bw-error p:not(.bw-error-code) {
+  margin: 0 auto 1.8rem;
+  max-width: 26rem;
+  color: var(--bw-muted);
+}
+
+.bw-error .bw-hero-cta {
+  justify-content: center;
+}
+
+@media (max-width: 760px) {
+  .bw-table {
+    font-size: 0.86rem;
+  }
+
+  .bw-table th,
+  .bw-table td {
+    padding: 0.7rem 0.75rem;
+  }
+
+  /* 좁은 화면은 표를 항목별 카드로 쌓음 */
+  .bw-table thead {
+    display: none;
+  }
+
+  .bw-table tr {
+    display: block;
+    padding: 0.4rem 0;
+    border-top: 1px solid var(--bw-border);
+  }
+
+  .bw-table tbody tr:first-child {
+    border-top: 0;
+  }
+
+  .bw-table td {
+    display: grid;
+    grid-template-columns: 4.2rem 1fr;
+    gap: 0.6rem;
+    border-top: 0;
+    padding: 0.3rem 0.9rem;
+  }
+
+  .bw-table td::before {
+    content: attr(data-label);
+    color: var(--bw-faint);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .bw-table td:first-child {
+    white-space: normal;
+    font-size: 0.98rem;
+  }
+}
+
 /* ===== 등장 애니메이션 ===== */
 .bw-reveal {
   opacity: 0;

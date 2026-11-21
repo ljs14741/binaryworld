@@ -60,8 +60,11 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0TSFJBQ41N');
+    // 로컬 확인할 땐 집계 안 함
+    if (/(^|\.)binaryworld\.kr$/.test(location.hostname)) {
+      gtag('js', new Date());
+      gtag('config', 'G-0TSFJBQ41N');
+    }
   </script>
 </head>
 <body class="bw-site">

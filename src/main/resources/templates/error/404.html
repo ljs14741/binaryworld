@@ -1,30 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Bad Gateway</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 100px;
-        }
-        h1 {
-            font-size: 48px;
-            color: #ff0000;
-        }
-        p {
-            font-size: 24px;
-            color: #333;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>페이지를 찾을 수 없어요 | Binary World</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/img/favicon/favicon.ico" type="image/x-icon">
+  <link id="bw-pretendard" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="/common/header.css">
+  <link rel="stylesheet" href="/common/footer.css">
+  <link rel="stylesheet" href="/css/home.css">
+  <link id="theme-style" rel="stylesheet" href="/css/home-light.css">
 </head>
-<body>
-<h1>404 Bad Gateway</h1>
-<p>잘못된 경로입니다. URL을 확인하세요.</p>
-<p>혹은 서버 점검 중입니다. 잠시 후 다시 시도해 주세요.</p>
-<p>보통 1분 내외로 완료</p>
-<p>지속적으로 안된다면 관리자에게 문의 ljs14741@naver.com</p>
+<body class="bw-site">
+<header id="global-header" aria-label="Binary World 공통 메뉴"></header>
+
+<main class="bw-error">
+  <div>
+    <p class="bw-error-code">404</p>
+    <h1>페이지를 찾을 수 없어요</h1>
+    <p>주소가 바뀌었거나 없는 페이지예요. 주소를 다시 확인하거나 홈에서 찾아 주세요.</p>
+    <div class="bw-hero-cta">
+      <a class="bw-btn bw-btn-primary" href="/">홈으로</a>
+      <a class="bw-btn bw-btn-ghost" href="https://game.binaryworld.kr">게임하러 가기</a>
+    </div>
+  </div>
+</main>
+
+<footer id="global-footer" aria-label="Binary World 푸터"></footer>
+<script src="/common/header.js" defer></script>
+<script src="/common/footer.js" defer></script>
 </body>
 </html>

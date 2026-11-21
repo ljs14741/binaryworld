@@ -3,32 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | Binary World</title>
+  <title>문의 | 진수의 잡동사니 - Binary World</title>
 
-  <meta name="description" content="Binary World 문의 페이지입니다. 문의사항은 이메일로 연락주세요.">
-  <meta name="keywords" content="Contact, 연락, 문의, 이메일, Binary World">
+  <meta name="description" content="진수의 잡동사니(Binary World) 문의 페이지. 버그 제보, 기능 아이디어, 협업 문의는 이메일이나 방명록으로 남겨 주세요.">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Binary World">
+  <link rel="canonical" href="https://binaryworld.kr/contact">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Contact | Binary World">
-  <meta property="og:description" content="Binary World 문의 페이지입니다. 문의사항은 이메일로 연락주세요.">
+  <meta property="og:title" content="문의 | 진수의 잡동사니">
+  <meta property="og:description" content="버그 제보, 기능 아이디어, 협업 문의는 이메일이나 방명록으로 남겨 주세요.">
   <meta property="og:image" content="https://binaryworld.kr/img/radish.png">
   <meta property="og:url" content="https://binaryworld.kr/contact">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Contact | Binary World">
-  <meta name="twitter:description" content="Binary World 문의 페이지입니다. 문의사항은 이메일로 연락주세요.">
+  <meta name="twitter:title" content="문의 | 진수의 잡동사니">
+  <meta name="twitter:description" content="버그 제보, 기능 아이디어, 협업 문의는 이메일이나 방명록으로 남겨 주세요.">
   <meta name="twitter:image" content="https://binaryworld.kr/img/radish.png">
 
   <link rel="icon" href="/img/favicon/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
-  <meta name="theme-color" content="#0b0d10">
+  <meta name="theme-color" content="#0a0c10">
 
+  <link id="bw-pretendard" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" th:href="@{/common/header.css}">
   <link rel="stylesheet" th:href="@{/common/footer.css}">
-  <link rel="stylesheet" th:href="@{/common/legal.css}">
-  <link id="theme-style" rel="stylesheet" th:href="@{/css/main-dark.css}">
+  <link rel="stylesheet" th:href="@{/css/home.css}">
+  <link id="theme-style" rel="stylesheet" th:href="@{/css/home-light.css}">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6890085609044109"
           crossorigin="anonymous"></script>
@@ -36,50 +37,66 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0TSFJBQ41N');
+    // 로컬 확인할 땐 집계 안 함
+    if (/(^|\.)binaryworld\.kr$/.test(location.hostname)) {
+      gtag('js', new Date());
+      gtag('config', 'G-0TSFJBQ41N');
+    }
   </script>
 </head>
-<body class="bw-legal-page" data-theme="dark">
+<body class="bw-site">
 <header id="global-header" aria-label="Binary World 공통 메뉴"></header>
 
-<main class="bw-legal-main">
-  <section class="bw-legal-hero">
-    <p class="bw-legal-eyebrow">Contact</p>
-    <h1>편하게<br>연락 주세요</h1>
-    <p class="bw-legal-lead">
-      서비스 문의, 개선 제안, 오류 제보 모두 환영합니다.
-      아래 이메일로 남겨주시면 확인하는 대로 답장드릴게요.
-    </p>
-  </section>
-
-  <section class="bw-legal-panel">
-    <article class="bw-legal-card">
-      <h2>이메일</h2>
-      <p>사이트와 관련된 문의사항은 아래로 보내주세요.</p>
-      <p style="margin-top:1rem">
-        <a class="bw-legal-cta" href="mailto:ljs14741@gmail.com">ljs14741@gmail.com</a>
+<main>
+  <section class="bw-page-hero">
+    <div class="bw-hero-bg" aria-hidden="true"></div>
+    <div class="bw-page-hero-inner">
+      <p class="bw-eyebrow"><span class="bw-dot" aria-hidden="true"></span>Contact</p>
+      <h1 class="bw-page-title">편하게<br>연락 주세요</h1>
+      <p class="bw-page-lead">
+        서비스 문의, 개선 제안, 오류 제보 모두 환영해요.
+        아래 이메일로 보내 주시면 확인하는 대로 답장드릴게요.
       </p>
-    </article>
-
-    <article class="bw-legal-card">
-      <h2>답변 안내</h2>
-      <ul>
-        <li>서비스 버그 / 장애 제보</li>
-        <li>기능 개선 아이디어</li>
-        <li>협업 및 기타 문의</li>
-      </ul>
-      <div class="bw-legal-meta">
-        <span class="bw-legal-chip">보통 1~2일 내 확인</span>
-      </div>
-    </article>
+    </div>
   </section>
+
+  <div class="bw-about">
+    <section class="bw-about-block bw-contact-mail">
+      <div>
+        <h2>이메일</h2>
+        <p>사이트와 관련된 문의는 여기로 보내 주세요.</p>
+      </div>
+      <a class="bw-btn bw-btn-primary" href="mailto:ljs14741@gmail.com">
+        ljs14741@gmail.com
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-5 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </section>
+
+    <section class="bw-about-block">
+      <h2>이런 걸 보내 주세요</h2>
+      <div class="bw-about-grid">
+        <div class="bw-about-item">
+          <strong>버그 · 장애 제보</strong>
+          <p>안 열리거나 이상하게 동작하는 화면이 있으면 주소와 함께 알려 주세요.</p>
+        </div>
+        <div class="bw-about-item">
+          <strong>기능 아이디어</strong>
+          <p>이런 게임이나 기능이 있으면 좋겠다는 생각, 언제든 환영이에요.</p>
+        </div>
+        <div class="bw-about-item">
+          <strong>협업 · 기타 문의</strong>
+          <p>제휴나 그 밖의 이야기도 편하게 보내 주세요.</p>
+        </div>
+      </div>
+      <p class="bw-contact-note">보통 1~2일 내 확인해요. 가볍게 남기고 싶으면 <a href="/#bw-guestbook">방명록</a>도 좋아요.</p>
+    </section>
+  </div>
 </main>
 
 <footer id="global-footer" aria-label="Binary World 푸터"></footer>
 
+<script th:src="@{/js/tilt.js}" defer></script>
 <script th:src="@{/common/header.js}" defer></script>
 <script th:src="@{/common/footer.js}" defer></script>
-<script th:src="@{/common/legal.js}" defer></script>
 </body>
 </html>
