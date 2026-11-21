@@ -47,16 +47,20 @@ async function start() {
   }
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // 폰·저사양은 가볍게 그림 (해상도·재질·장식 줄임)
+  const lowEnd = window.matchMedia('(pointer: coarse)').matches || (navigator.hardwareConcurrency || 8) <= 4;
+  const maxRatio = Math.min(window.devicePixelRatio || 1, lowEnd ? 1.5 : 2);
+  let pixelRatio = maxRatio;
 
   let renderer;
   try {
-    renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: !lowEnd, alpha: true, powerPreference: 'high-performance' });
   } catch (err) {
     console.error(err);
     fallback();
     return;
   }
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(pixelRatio);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
@@ -77,8 +81,15 @@ async function start() {
   scene.add(world);
 
   // ---------- 재질 ----------
+  // 저사양은 코팅(clearcoat) 없는 가벼운 재질
+  const Plastic = lowEnd ? THREE.MeshStandardMaterial : THREE.MeshPhysicalMaterial;
   function plastic(color, extra = {}) {
-    return new THREE.MeshPhysicalMaterial({
+    if (lowEnd) {
+      delete extra.clearcoat;
+      delete extra.clearcoatRoughness;
+      return new Plastic({ color, roughness: 0.3, metalness: 0, ...extra });
+    }
+    return new Plastic({
       color,
       roughness: 0.32,
       metalness: 0,
@@ -302,12 +313,12 @@ async function start() {
   });
 
   // 장식용 쇠구슬·동전 (누를 수 없음)
-  const chrome = new THREE.MeshPhysicalMaterial({ color: '#dfe6ee', metalness: 1, roughness: 0.12 });
-  const gold = new THREE.MeshPhysicalMaterial({ color: '#f5b941', metalness: 1, roughness: 0.25 });
+  const chrome = new THREE.MeshStandardMaterial({ color: '#dfe6ee', metalness: 1, roughness: 0.12 });
+  const gold = new THREE.MeshStandardMaterial({ color: '#f5b941', metalness: 1, roughness: 0.25 });
   const coinGeo = new THREE.CylinderGeometry(0.26, 0.26, 0.06, 40);
   const ballGeo = new THREE.SphereGeometry(1, 32, 20);
   const bits = [];
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < (lowEnd ? 5 : 9); i++) {
     const isCoin = i % 3 === 0;
     const m = new THREE.Mesh(isCoin ? coinGeo : ballGeo, isCoin ? gold : chrome);
     if (!isCoin) m.scale.setScalar(0.1 + (i % 4) * 0.05);
@@ -434,7 +445,9 @@ async function start() {
     if (!running) return;
     requestAnimationFrame(frame);
 
-    const dt = Math.min(clock.getDelta(), 0.05);
+    const raw = clock.getDelta();
+    const dt = Math.min(raw, 0.05);
+    adaptQuality(raw);
     const t = clock.elapsedTime;
     if (introStart < 0) introStart = t;
     const motion = reduceMotion ? 0 : 1;
@@ -507,6 +520,24 @@ async function start() {
     renderer.render(scene, camera);
   }
 
+  // 60프레임 평균이 느리면(45fps 미만) 해상도를 한 단계씩 낮춤 (최저 1배)
+  let slowSum = 0;
+  let slowCount = 0;
+  function adaptQuality(delta) {
+    if (delta <= 0 || delta > 0.5) return;
+    slowSum += delta;
+    slowCount++;
+    if (slowCount < 60) return;
+    const avg = slowSum / slowCount;
+    slowSum = 0;
+    slowCount = 0;
+    if (avg > 1 / 45 && pixelRatio > 1) {
+      pixelRatio = Math.max(1, pixelRatio - 0.25);
+      renderer.setPixelRatio(pixelRatio);
+      layout();
+    }
+  }
+
   function updateRunning() {
     const next = visible && !document.hidden;
     if (next && !running) {
@@ -541,6 +572,12 @@ async function start() {
     hint.textContent = '장난감을 눌러 보세요';
   }
 
+  // 보여 주기 전에 셰이더를 미리 만들어 첫 프레임 멈칫을 줄임
+  try {
+    renderer.compile(scene, camera);
+  } catch {
+    // ignore
+  }
   stage.classList.add('is-ready');
   updateRunning();
 }

@@ -1,0 +1,695 @@
+/*
+  Binary World 서비스 공용 디자인 (vote·quiz·food·face·game 목록)
+  https://binaryworld.kr/common/service.css 를 각 서비스가 불러 씀
+  색은 각 서비스의 main-light.css / main-dark.css 가 정함 (헤더 테마 버튼이 둘을 바꿔 끼움)
+  렉 방지: 장난감은 CSS 로만 그리고 transform 만 움직임, 화면 밖이면 service.js 가 멈춤
+*/
+
+.bw-svc-page,
+.bw-svc-page *,
+.bw-svc-page *::before,
+.bw-svc-page *::after {
+  box-sizing: border-box;
+}
+
+.bw-svc-page {
+  --bw-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --bw-font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", sans-serif;
+  --bw-radius: 22px;
+  --bw-wrap: 1080px;
+
+  margin: 0;
+  padding: var(--bw-header-height, 64px) 0 0;
+  min-height: 100vh;
+  background: var(--bw-bg);
+  color: var(--bw-text);
+  font-family: var(--bw-font);
+  font-size: 16px;
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.35s var(--bw-ease), color 0.35s var(--bw-ease);
+}
+
+.bw-svc-page a {
+  color: inherit;
+}
+
+.bw-svc-page button,
+.bw-svc-page input,
+.bw-svc-page select,
+.bw-svc-page textarea {
+  font-family: inherit;
+}
+
+/* ===== 첫 화면 ===== */
+.bw-svc-page .page-title {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin: 0;
+  padding: clamp(3.2rem, 7vw, 5.2rem) 1.25rem clamp(2.2rem, 5vw, 3.4rem);
+  text-align: center;
+}
+
+/* 배경 빛 + 원근감 있는 바닥 격자 */
+.bw-svc-page .page-title::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(50% 70% at 50% 30%, var(--bw-glow-a), transparent 70%),
+    radial-gradient(35% 50% at 88% 85%, var(--bw-glow-b), transparent 70%),
+    radial-gradient(35% 50% at 10% 15%, var(--bw-glow-b), transparent 70%);
+}
+
+.bw-svc-page .page-title::after {
+  content: "";
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: -30%;
+  height: 70%;
+  z-index: -2;
+  background-image:
+    linear-gradient(var(--bw-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bw-grid) 1px, transparent 1px);
+  background-size: 52px 52px;
+  transform: perspective(520px) rotateX(64deg);
+  transform-origin: bottom center;
+  -webkit-mask-image: linear-gradient(to top, #000 5%, transparent 80%);
+  mask-image: linear-gradient(to top, #000 5%, transparent 80%);
+  pointer-events: none;
+}
+
+.bw-svc-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.9rem;
+  color: var(--bw-accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.bw-svc-eyebrow::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 4px var(--bw-accent-soft);
+}
+
+.bw-svc-page .page-title h1 {
+  margin: 0 auto 0.9rem;
+  max-width: 20ch;
+  font-size: clamp(2.3rem, 6.2vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+}
+
+.bw-svc-page .page-title h1 .bw-svc-em,
+.bw-svc-em {
+  background: linear-gradient(100deg, var(--bw-accent) 0%, var(--bw-accent-mid, #38bdf8) 50%, var(--bw-accent-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bw-svc-page .page-title > p:not(.bw-svc-eyebrow) {
+  margin: 0 auto;
+  max-width: 34rem;
+  color: var(--bw-muted);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  font-weight: 500;
+}
+
+.bw-svc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.6rem;
+}
+
+/* ===== 떠다니는 장난감 (CSS 로만 그림, 서비스마다 골라 씀) ===== */
+.bw-svc-toys {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.bw-toy {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s, 56px);
+  height: var(--s, 56px);
+  animation: bw-toy-float var(--d, 7s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.14));
+}
+
+.bw-svc-toys.is-paused .bw-toy {
+  animation-play-state: paused;
+}
+
+@keyframes bw-toy-float {
+  0%, 100% { transform: translateY(0) rotate(var(--r0, -8deg)); }
+  50% { transform: translateY(-16px) rotate(var(--r1, 8deg)); }
+}
+
+/* 플라스틱 느낌 공통 광택 */
+.bw-toy::after {
+  content: "";
+  position: absolute;
+  inset: 8% 40% 55% 12%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  filter: blur(2px);
+}
+
+.bw-toy-dice {
+  border-radius: 22%;
+  background:
+    radial-gradient(circle at 30% 30%, #1f2430 9%, transparent 10%),
+    radial-gradient(circle at 70% 70%, #1f2430 9%, transparent 10%),
+    radial-gradient(circle at 50% 50%, #ef4444 11%, transparent 12%),
+    linear-gradient(145deg, #ffffff, #dfe3ea);
+}
+
+.bw-toy-star {
+  background: linear-gradient(150deg, #fde68a, #f59e0b);
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.bw-toy-star::after,
+.bw-toy-heart::after,
+.bw-toy-ball::after,
+.bw-toy-bar::after {
+  display: none;
+}
+
+.bw-toy-heart {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 44'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23fda4af'/%3E%3Cstop offset='1' stop-color='%23e11d48'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M24 42C10 32 2 24 2 14 2 7 7 2 14 2c4 0 8 2 10 6 2-4 6-6 10-6 7 0 12 5 12 12 0 10-8 18-22 28Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.bw-toy-ball {
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, #ffffff 0%, #dfe6ee 18%, #8b97a6 60%, #4b5563 100%);
+}
+
+.bw-toy-donut {
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 26%, #f472b6 27%, #f9a8d4 52%, #e9b27c 54%, #d39255 70%, transparent 71%);
+}
+
+/* 글자 하나가 새겨진 말랑한 블록 (?, ✓, % 같은 것) */
+.bw-toy-chip {
+  display: grid;
+  place-items: center;
+  border-radius: 30%;
+  background: linear-gradient(150deg, var(--c1, #c4b5fd), var(--c2, #7c3aed));
+  color: #fff;
+  font-weight: 900;
+  font-size: calc(var(--s, 56px) * 0.55);
+  line-height: 1;
+  box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.12);
+}
+
+/* 투표용지: 흰 종이 + 체크 */
+.bw-toy-ballot {
+  border-radius: 14%;
+  background:
+    linear-gradient(#e5e7eb, #e5e7eb) 26% 70% / 50% 7% no-repeat,
+    linear-gradient(#e5e7eb, #e5e7eb) 26% 84% / 36% 7% no-repeat,
+    linear-gradient(160deg, #ffffff, #e9edf3);
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.06);
+}
+
+.bw-toy-ballot::before {
+  content: "";
+  position: absolute;
+  left: 22%;
+  top: 14%;
+  width: 34%;
+  height: 20%;
+  border-left: 5px solid #10b981;
+  border-bottom: 5px solid #10b981;
+  transform: rotate(-45deg);
+  border-radius: 2px;
+}
+
+/* 막대그래프 */
+.bw-toy-bar {
+  background:
+    linear-gradient(var(--c1, #60a5fa), var(--c2, #2563eb)) 8% 100% / 24% 55% no-repeat,
+    linear-gradient(var(--c1, #60a5fa), var(--c2, #2563eb)) 50% 100% / 24% 95% no-repeat,
+    linear-gradient(var(--c1, #60a5fa), var(--c2, #2563eb)) 92% 100% / 24% 35% no-repeat;
+}
+
+/* 그릇 (음식) */
+.bw-toy-bowl {
+  border-radius: 0 0 50% 50% / 0 0 70% 70%;
+  height: calc(var(--s, 56px) * 0.62);
+  background: linear-gradient(160deg, #fb923c, #ea580c);
+  box-shadow: inset 0 6px 0 rgba(255, 255, 255, 0.35);
+}
+
+.bw-toy-bowl::before {
+  content: "";
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: -22%;
+  height: 44%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 50%, #fde68a 20%, transparent 22%), radial-gradient(circle at 65% 45%, #86efac 16%, transparent 18%), #fff7ed;
+}
+
+/* 카메라 (외모 평가) */
+.bw-toy-camera {
+  border-radius: 24%;
+  height: calc(var(--s, 56px) * 0.74);
+  background: linear-gradient(150deg, #f9a8d4, #db2777);
+}
+
+.bw-toy-camera::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 46%;
+  height: 62%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 38%, #93c5fd 0%, #1e3a8a 55%, #0f172a 70%);
+  box-shadow: 0 0 0 4px #fff;
+}
+
+/* 게임패드 */
+.bw-toy-pad {
+  border-radius: 40% / 50%;
+  height: calc(var(--s, 56px) * 0.6);
+  background:
+    radial-gradient(circle at 72% 40%, #fbbf24 8%, transparent 9%),
+    radial-gradient(circle at 82% 60%, #f43f5e 8%, transparent 9%),
+    linear-gradient(#fff, #fff) 26% 50% / 22% 10% no-repeat,
+    linear-gradient(#fff, #fff) 26% 50% / 7% 34% no-repeat,
+    linear-gradient(150deg, #5eead4, #0d9488);
+}
+
+/* ===== 공유 버튼 ===== */
+.bw-svc-page .icon-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.55rem;
+  margin: 0 auto 0.4rem;
+  padding: 0 1rem;
+}
+
+.bw-svc-page .link-icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  transition: transform 0.25s var(--bw-ease), box-shadow 0.25s var(--bw-ease);
+}
+
+.bw-svc-page .link-icon:hover {
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.18);
+}
+
+/* ===== 버튼 ===== */
+.bw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 2.9rem;
+  padding: 0 1.3rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--bw-surface-strong);
+  color: var(--bw-text);
+  font-size: 0.97rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.25s var(--bw-ease), box-shadow 0.25s var(--bw-ease), background-color 0.25s var(--bw-ease), border-color 0.25s var(--bw-ease), color 0.25s var(--bw-ease);
+}
+
+.bw-btn:hover {
+  transform: translateY(-2px);
+}
+
+.bw-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.bw-btn-primary {
+  background: var(--bw-text);
+  color: var(--bw-bg);
+  box-shadow: var(--bw-shadow);
+}
+
+.bw-btn-primary:hover {
+  box-shadow: var(--bw-shadow-hover);
+}
+
+.bw-btn-accent {
+  background: linear-gradient(135deg, var(--bw-accent), var(--bw-accent-deep, var(--bw-accent)));
+  color: var(--bw-on-accent);
+  box-shadow: 0 10px 24px var(--bw-accent-shadow, rgba(0, 0, 0, 0.18));
+}
+
+.bw-btn-ghost {
+  border-color: var(--bw-border-strong);
+  background: var(--bw-surface);
+}
+
+.bw-btn-ghost:hover {
+  border-color: var(--bw-accent);
+  color: var(--bw-accent);
+}
+
+.bw-btn-small {
+  min-height: 2.2rem;
+  padding: 0 0.9rem;
+  font-size: 0.86rem;
+}
+
+.bw-svc-page button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.bw-svc-page :focus-visible {
+  outline: 2px solid var(--bw-accent);
+  outline-offset: 3px;
+}
+
+/* 목록으로·이용 가이드 같은 작은 버튼 */
+.bw-svc-page .home-button,
+.bw-svc-page .guide-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2.4rem;
+  padding: 0 1rem;
+  border: 1px solid var(--bw-border-strong);
+  border-radius: 999px;
+  background: var(--bw-surface);
+  color: var(--bw-text);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: border-color 0.25s var(--bw-ease), color 0.25s var(--bw-ease), transform 0.25s var(--bw-ease);
+}
+
+.bw-svc-page .home-button:hover,
+.bw-svc-page .guide-btn:hover {
+  border-color: var(--bw-accent);
+  color: var(--bw-accent);
+  transform: translateY(-1px);
+}
+
+/* ===== 입력칸 ===== */
+.bw-svc-page .form-control,
+.bw-svc-page input[type="text"],
+.bw-svc-page input[type="password"],
+.bw-svc-page input[type="number"],
+.bw-svc-page select,
+.bw-svc-page textarea {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.7rem 0.95rem;
+  border: 1px solid var(--bw-border-strong);
+  border-radius: 14px;
+  background: var(--bw-input);
+  color: var(--bw-text);
+  font-size: 1rem;
+  transition: border-color 0.2s var(--bw-ease), box-shadow 0.2s var(--bw-ease);
+}
+
+.bw-svc-page .form-control:focus,
+.bw-svc-page input[type="text"]:focus,
+.bw-svc-page input[type="password"]:focus,
+.bw-svc-page input[type="number"]:focus,
+.bw-svc-page select:focus,
+.bw-svc-page textarea:focus {
+  outline: none;
+  border-color: var(--bw-accent);
+  box-shadow: 0 0 0 4px var(--bw-accent-soft);
+}
+
+.bw-svc-page input[type="checkbox"],
+.bw-svc-page input[type="radio"] {
+  accent-color: var(--bw-accent);
+}
+
+/* ===== 카드 공통 ===== */
+.bw-card {
+  border: 1px solid var(--bw-border);
+  border-radius: var(--bw-radius);
+  background: var(--bw-surface-strong);
+  box-shadow: var(--bw-shadow);
+}
+
+/* 마우스 따라 살짝 기울어짐 (service.js 가 --rx --ry --mx --my 를 넣음) */
+.bw-tilt {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.5s var(--bw-ease), box-shadow 0.35s var(--bw-ease), border-color 0.35s var(--bw-ease);
+}
+
+.bw-tilt.is-tilting {
+  transition: transform 0.08s linear, box-shadow 0.35s var(--bw-ease), border-color 0.35s var(--bw-ease);
+}
+
+.bw-tilt::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(380px circle at var(--mx) var(--my), rgba(255, 255, 255, 0.18), transparent 45%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s var(--bw-ease);
+}
+
+.bw-tilt:hover::before {
+  opacity: 1;
+}
+
+/* ===== 페이지 넘김 ===== */
+.bw-svc-page .pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 1.8rem 0 0.5rem;
+}
+
+.bw-svc-page .pagination-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0 1.1rem;
+  border: 1px solid var(--bw-border-strong);
+  border-radius: 999px;
+  background: var(--bw-surface-strong);
+  color: var(--bw-text);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: border-color 0.2s var(--bw-ease), color 0.2s var(--bw-ease);
+}
+
+.bw-svc-page .pagination-button:hover {
+  border-color: var(--bw-accent);
+  color: var(--bw-accent);
+}
+
+.bw-svc-page .pagination-button.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.bw-svc-page .pagination-info {
+  min-width: 4rem;
+  color: var(--bw-muted);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+/* ===== 안내 모달 ===== */
+.bw-svc-page .modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(8, 10, 14, 0.55);
+}
+
+.bw-svc-page .modal-content {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: calc(100vh - 2.5rem);
+  overflow-y: auto;
+  padding: 2rem 1.8rem 1.6rem;
+  border: 1px solid var(--bw-border);
+  border-radius: calc(var(--bw-radius) + 4px);
+  background: var(--bw-surface-strong);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  animation: bw-modal-in 0.35s var(--bw-ease);
+}
+
+@keyframes bw-modal-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+}
+
+.bw-svc-page .modal-content h2 {
+  margin: 0 0 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.bw-svc-page .close-modal {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: var(--bw-bg);
+  color: var(--bw-muted);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.bw-svc-page .close-modal:hover {
+  color: var(--bw-text);
+}
+
+.bw-svc-page .guide-section {
+  margin-bottom: 1rem;
+  padding: 1rem 1.1rem;
+  border-radius: 16px;
+  background: var(--bw-bg);
+}
+
+.bw-svc-page .guide-section h3 {
+  margin: 0 0 0.5rem;
+  color: var(--bw-accent);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.bw-svc-page .guide-section ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--bw-muted);
+  font-size: 0.93rem;
+}
+
+.bw-svc-page .guide-section li + li {
+  margin-top: 0.3rem;
+}
+
+.bw-svc-page .guide-section strong {
+  color: var(--bw-text);
+}
+
+.bw-svc-page .inquiry-note {
+  margin: 0.6rem 0 0;
+  color: var(--bw-faint);
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+/* 방명록은 공용 스타일, 간격만 맞춤 */
+.bw-svc-page #bw-guestbook {
+  margin-top: 3.5rem;
+}
+
+/* ===== 등장 ===== */
+.bw-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s var(--bw-ease), transform 0.7s var(--bw-ease);
+}
+
+.bw-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 640px) {
+  .bw-svc-page .page-title {
+    padding-top: 2.6rem;
+  }
+
+  /* 모바일은 위쪽 장난감 둘만 (글자 가리지 않게, 덜 움직이게) */
+  .bw-toy:nth-child(n + 3) {
+    display: none;
+  }
+
+  .bw-toy {
+    --s: 40px !important;
+  }
+
+  .bw-svc-page .modal-content {
+    padding: 1.6rem 1.2rem 1.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bw-svc-page *,
+  .bw-svc-page *::before,
+  .bw-svc-page *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .bw-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 첫 화면 안의 공유 버튼 */
+.bw-svc-page .page-title .icon-container {
+  margin-top: 1.1rem;
+}

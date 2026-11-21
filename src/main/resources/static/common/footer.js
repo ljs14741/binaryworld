@@ -148,7 +148,7 @@
     '<p class="bw-footer-legal">© 2026 Binary World. All rights reserved.</p>' +
     '<div class="bw-footer-chip">' +
     '<span class="bw-footer-chip-dot" aria-hidden="true"></span>' +
-    'Signal Glass System' +
+    '진수의 잡동사니' +
     '</div>' +
     '</div>' +
     '</div>';
