@@ -3,31 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>페이지를 찾을 수 없어요 | Binary World</title>
   <meta name="robots" content="noindex">
-  <link rel="icon" href="/img/favicon/favicon.ico" type="image/x-icon">
-  <link id="bw-pretendard" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <title>페이지를 찾을 수 없어요 | Binary World</title>
+  <link rel="icon" href="https://binaryworld.kr/img/favicon/favicon.ico" type="image/x-icon">
+  <!-- 오류 페이지는 binaryworld.kr 공용 디자인 하나를 모든 서브도메인이 같이 씀 -->
   <link rel="stylesheet" href="/common/header.css">
   <link rel="stylesheet" href="/common/footer.css">
-  <link rel="stylesheet" href="/css/home.css">
-  <link id="theme-style" rel="stylesheet" href="/css/home-light.css">
+  <link rel="stylesheet" href="/common/error.css">
+  <link id="theme-style" rel="stylesheet" href="/common/error-light.css">
+  <script>
+    // 다른 서브도메인에서 고른 테마 이어받기. 처음 온 사람은 밝게
+    (function () {
+      var m = document.cookie.match(/(?:^|;\s*)bw_theme=(light|dark)/);
+      var t = m ? m[1] : null;
+      try { t = t || localStorage.getItem('theme'); } catch (e) { }
+      if (t === 'dark') {
+        var link = document.getElementById('theme-style');
+        link.setAttribute('href', link.getAttribute('href').replace('error-light.css', 'error-dark.css'));
+      }
+    })();
+  </script>
 </head>
-<body class="bw-site">
+<body class="bw-err-body" data-code="404">
 <header id="global-header" aria-label="Binary World 공통 메뉴"></header>
 
-<main class="bw-error">
-  <div>
-    <p class="bw-error-code">404</p>
+<main id="bw-error" class="bw-err">
+  <div class="bw-err-inner bw-err-fallback">
     <h1>페이지를 찾을 수 없어요</h1>
-    <p>주소가 바뀌었거나 없는 페이지예요. 주소를 다시 확인하거나 홈에서 찾아 주세요.</p>
-    <div class="bw-hero-cta">
-      <a class="bw-btn bw-btn-primary" href="/">홈으로</a>
-      <a class="bw-btn bw-btn-ghost" href="https://game.binaryworld.kr">게임하러 가기</a>
-    </div>
+    <p><a href="/">처음으로 가기</a></p>
   </div>
 </main>
 
 <footer id="global-footer" aria-label="Binary World 푸터"></footer>
+<script src="/common/error.js" defer></script>
 <script src="/common/header.js" defer></script>
 <script src="/common/footer.js" defer></script>
 </body>

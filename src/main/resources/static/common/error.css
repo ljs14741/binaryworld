@@ -1,0 +1,351 @@
+/*
+  Binary World 공용 오류 페이지 (404·500 등)
+  모든 서브도메인이 https://binaryworld.kr/common/error.css 를 불러 씀. 내용은 error.js 가 채움
+  색은 error-light.css / error-dark.css (공용 헤더 테마 버튼이 둘을 바꿔 끼움). 여기 기본값은 밝은 색
+*/
+
+.bw-err-body,
+.bw-err-body *,
+.bw-err-body *::before,
+.bw-err-body *::after {
+  box-sizing: border-box;
+}
+
+.bw-err-body {
+  --e-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --e-font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", sans-serif;
+  --e-bg: #f6f4ee;
+  --e-surface: rgba(255, 255, 255, 0.72);
+  --e-border: rgba(20, 20, 18, 0.1);
+  --e-text: #161614;
+  --e-muted: #66645d;
+  --e-faint: #9a978e;
+  --e-accent: #0f766e;
+  --e-accent-2: #d97706;
+  --e-depth: #0b5550;
+  --e-glow-a: rgba(20, 184, 166, 0.18);
+  --e-glow-b: rgba(245, 158, 11, 0.16);
+  --e-grid: rgba(20, 20, 18, 0.07);
+  --e-shadow: 0 18px 44px rgba(20, 20, 18, 0.12);
+
+  margin: 0;
+  padding-top: var(--bw-header-height, 64px);
+  min-height: 100vh;
+  background: var(--e-bg);
+  color: var(--e-text);
+  font-family: var(--e-font);
+  line-height: 1.65;
+  letter-spacing: -0.01em;
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.35s var(--e-ease), color 0.35s var(--e-ease);
+}
+
+
+
+/* ===== 무대 ===== */
+.bw-err {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: calc(100svh - var(--bw-header-height, 64px));
+  display: grid;
+  place-items: center;
+  padding: 3rem 1.25rem 4rem;
+  text-align: center;
+}
+
+.bw-err::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(50% 45% at 50% 38%, var(--e-glow-a), transparent 70%),
+    radial-gradient(30% 35% at 85% 85%, var(--e-glow-b), transparent 70%),
+    radial-gradient(30% 35% at 12% 15%, var(--e-glow-b), transparent 70%);
+}
+
+/* 원근감 있는 바닥 격자 */
+.bw-err::after {
+  content: "";
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: -12%;
+  height: 50%;
+  z-index: -2;
+  background-image:
+    linear-gradient(var(--e-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--e-grid) 1px, transparent 1px);
+  background-size: 56px 56px;
+  transform: perspective(600px) rotateX(62deg);
+  transform-origin: bottom center;
+  -webkit-mask-image: linear-gradient(to top, #000 10%, transparent 85%);
+  mask-image: linear-gradient(to top, #000 10%, transparent 85%);
+  animation: bw-err-grid 8s linear infinite;
+}
+
+@keyframes bw-err-grid {
+  to { background-position: 0 56px, 0 0; }
+}
+
+.bw-err-inner {
+  position: relative;
+  max-width: 34rem;
+}
+
+/* ===== 떠다니는 장난감 (CSS 로만 그림) ===== */
+.bw-err-toys {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.bw-err-toy {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s);
+  height: var(--s);
+  animation: bw-err-float var(--d, 7s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.16));
+}
+
+@keyframes bw-err-float {
+  0%, 100% { transform: translateY(0) rotate(var(--r0, -8deg)); }
+  50% { transform: translateY(-18px) rotate(var(--r1, 10deg)); }
+}
+
+/* 주사위 */
+.bw-err-dice {
+  border-radius: 22%;
+  background:
+    radial-gradient(circle at 30% 30%, #1f2430 9%, transparent 10%),
+    radial-gradient(circle at 70% 70%, #1f2430 9%, transparent 10%),
+    radial-gradient(circle at 50% 50%, #ef4444 11%, transparent 12%),
+    linear-gradient(145deg, #ffffff, #dfe3ea);
+  box-shadow: inset -4px -6px 0 rgba(0, 0, 0, 0.08), inset 3px 3px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* 별 */
+.bw-err-star {
+  background: linear-gradient(150deg, #fde68a, #f59e0b);
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+/* 하트 */
+.bw-err-heart {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 44'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23fda4af'/%3E%3Cstop offset='1' stop-color='%23e11d48'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M24 42C10 32 2 24 2 14 2 7 7 2 14 2c4 0 8 2 10 6 2-4 6-6 10-6 7 0 12 5 12 12 0 10-8 18-22 28Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* 도넛 */
+.bw-err-donut {
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, transparent 26%, #f472b6 27%, #f9a8d4 52%, #e9b27c 54%, #d39255 70%, transparent 71%);
+}
+
+/* 쇠구슬 */
+.bw-err-ball {
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, #ffffff 0%, #dfe6ee 18%, #8b97a6 60%, #4b5563 100%);
+}
+
+/* 물음표 */
+.bw-err-quiz {
+  display: grid;
+  place-items: center;
+  border-radius: 30%;
+  background: linear-gradient(150deg, #c4b5fd, #7c3aed);
+  color: #fff;
+  font-weight: 800;
+  font-size: calc(var(--s) * 0.62);
+  line-height: 1;
+}
+
+/* ===== 입체 숫자 ===== */
+.bw-err-code {
+  position: relative;
+  display: inline-block;
+  margin: 0 0 0.4rem;
+  font-size: clamp(6rem, 24vw, 11.5rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  transform: perspective(700px) rotateX(var(--rx, 8deg)) rotateY(var(--ry, -10deg));
+  transform-style: preserve-3d;
+  transition: transform 0.25s var(--e-ease);
+  user-select: none;
+}
+
+/* 옆면: 같은 글자를 겹겹이 밀어서 두께를 만듦 */
+.bw-err-code-depth {
+  display: block;
+  color: var(--e-depth);
+  text-shadow:
+    1px 1px 0 var(--e-depth), 2px 2px 0 var(--e-depth), 3px 3px 0 var(--e-depth),
+    4px 4px 0 var(--e-depth), 5px 5px 0 var(--e-depth), 6px 6px 0 var(--e-depth),
+    7px 7px 0 var(--e-depth), 8px 8px 0 var(--e-depth), 9px 9px 0 var(--e-depth),
+    10px 10px 0 var(--e-depth), 14px 22px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* 앞면: 그라데이션 */
+.bw-err-code-face {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, var(--e-accent) 0%, #38bdf8 45%, var(--e-accent-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ===== 글 ===== */
+.bw-err h1 {
+  margin: 1.4rem 0 0.6rem;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.045em;
+}
+
+.bw-err-lead {
+  margin: 0 auto 1.1rem;
+  max-width: 28rem;
+  color: var(--e-muted);
+  font-size: 1.03rem;
+}
+
+.bw-err-path {
+  display: inline-block;
+  max-width: 100%;
+  margin: 0 0 1.8rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--e-border);
+  border-radius: 999px;
+  background: var(--e-surface);
+  color: var(--e-faint);
+  font-size: 0.82rem;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.bw-err-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.bw-err-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 3rem;
+  padding: 0 1.35rem;
+  border: 1px solid var(--e-border);
+  border-radius: 999px;
+  background: var(--e-surface);
+  color: var(--e-text);
+  font-family: inherit;
+  font-size: 0.97rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: transform 0.25s var(--e-ease), box-shadow 0.25s var(--e-ease), border-color 0.25s var(--e-ease), color 0.25s var(--e-ease);
+}
+
+.bw-err-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--e-accent);
+  color: var(--e-accent);
+}
+
+.bw-err-btn-primary {
+  border-color: transparent;
+  background: var(--e-text);
+  color: var(--e-bg);
+  box-shadow: var(--e-shadow);
+}
+
+.bw-err-btn-primary:hover {
+  color: var(--e-bg);
+  border-color: transparent;
+}
+
+.bw-err-btn:focus-visible {
+  outline: 2px solid var(--e-accent);
+  outline-offset: 3px;
+}
+
+.bw-err-note {
+  margin: 1.6rem 0 0;
+  color: var(--e-faint);
+  font-size: 0.85rem;
+}
+
+.bw-err-note a {
+  color: inherit;
+}
+
+/* 스크립트가 못 돌 때 보이는 최소 내용 */
+.bw-err-fallback a {
+  color: var(--e-accent);
+  font-weight: 700;
+}
+
+/* ===== 등장 ===== */
+.bw-err-inner > * {
+  animation: bw-err-in 0.7s var(--e-ease) backwards;
+}
+
+.bw-err-inner > *:nth-child(2) { animation-delay: 0.08s; }
+.bw-err-inner > *:nth-child(3) { animation-delay: 0.14s; }
+.bw-err-inner > *:nth-child(4) { animation-delay: 0.2s; }
+.bw-err-inner > *:nth-child(5) { animation-delay: 0.26s; }
+.bw-err-inner > *:nth-child(6) { animation-delay: 0.32s; }
+
+@keyframes bw-err-in {
+  from { opacity: 0; transform: translateY(18px); }
+}
+
+.bw-err-inner > .bw-err-code {
+  animation-name: bw-err-drop;
+}
+
+@keyframes bw-err-drop {
+  from { opacity: 0; transform: perspective(700px) rotateX(60deg) translateY(-40px); }
+}
+
+@media (max-width: 640px) {
+  .bw-err {
+    padding-top: 2.5rem;
+  }
+
+  .bw-err-toy:nth-child(n + 3) {
+    display: none;
+  }
+
+  .bw-err-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bw-err-body *,
+  .bw-err-body *::before,
+  .bw-err-body *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}

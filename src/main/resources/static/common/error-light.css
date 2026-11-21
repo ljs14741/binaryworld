@@ -1,0 +1,4 @@
+/* 공용 오류 페이지 밝은 색 (기본값은 error.css 에 있음, 헤더 테마 버튼이 이 파일과 error-dark.css 를 바꿔 끼움) */
+.bw-err-body {
+  color-scheme: light;
+}

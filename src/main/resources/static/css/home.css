@@ -201,8 +201,12 @@
   position: absolute;
   right: 8%;
   top: 50%;
-  width: min(360px, 34vw);
+  width: min(320px, 30vw);
   height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: 50% 40%;
+  border-radius: 40px;
   transform: translateY(-50%);
   filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.18));
   animation: bw-float 6s ease-in-out infinite;
@@ -853,14 +857,15 @@
   height: 112px;
   border-radius: 28px;
   background: var(--bw-bg);
-  display: grid;
-  place-items: center;
+  overflow: hidden;
 }
 
+/* radish.png 는 가로 배너라 가운데 무 하나만 잘라 보임 */
 .bw-about-avatar img {
-  width: 92px;
-  height: 92px;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 40%;
 }
 
 .bw-about-name {
@@ -1179,10 +1184,6 @@
     border-radius: 22px;
   }
 
-  .bw-about-avatar img {
-    width: 68px;
-    height: 68px;
-  }
 
   .bw-arch-host {
     padding: 2rem 0.9rem 0.9rem;
@@ -1275,44 +1276,6 @@
 
 .bw-policy-tip {
   font-size: 0.9rem;
-}
-
-/* ===== 오류 페이지 ===== */
-.bw-error {
-  min-height: calc(100svh - var(--bw-header-height, 64px) - 120px);
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 3rem 1.25rem;
-}
-
-.bw-error-code {
-  margin: 0;
-  font-size: clamp(5rem, 18vw, 9rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.06em;
-  background: linear-gradient(100deg, var(--bw-accent) 0%, #38bdf8 45%, var(--bw-accent-2) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.bw-error h1 {
-  margin: 0.6rem 0 0.6rem;
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-}
-
-.bw-error p:not(.bw-error-code) {
-  margin: 0 auto 1.8rem;
-  max-width: 26rem;
-  color: var(--bw-muted);
-}
-
-.bw-error .bw-hero-cta {
-  justify-content: center;
 }
 
 @media (max-width: 760px) {
