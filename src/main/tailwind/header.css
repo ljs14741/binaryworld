@@ -24,7 +24,7 @@
   --bw-height: 64px;
   --bw-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --bw-font-display: "Syne", "Avenir Next", "Segoe UI", sans-serif;
-  --bw-font-body: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+  --bw-font-body: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", sans-serif;
 
   position: fixed;
   inset: 0 0 auto;

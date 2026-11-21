@@ -3,32 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About | Binary World</title>
+  <title>소개 | 진수의 잡동사니 - Binary World</title>
 
-  <meta name="description" content="Binary World 개발자 소개 및 사이트 운영 목적 안내 페이지입니다.">
-  <meta name="keywords" content="About, 소개, 개발자, Binary World, 개인 프로젝트">
+  <meta name="description" content="진수의 잡동사니(Binary World)는 한 사람이 만들고 운영하는 무료 웹 놀이터예요. 어떤 곳인지, 왜 무료인지, 누가 만드는지 소개합니다.">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Binary World">
+  <link rel="canonical" href="https://binaryworld.kr/about">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="About | Binary World">
-  <meta property="og:description" content="Binary World 개발자 소개 및 사이트 운영 목적 안내 페이지입니다.">
+  <meta property="og:title" content="소개 | 진수의 잡동사니">
+  <meta property="og:description" content="한 사람이 만들고 운영하는 무료 웹 놀이터, 진수의 잡동사니를 소개합니다.">
   <meta property="og:image" content="https://binaryworld.kr/img/radish.png">
   <meta property="og:url" content="https://binaryworld.kr/about">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="About | Binary World">
-  <meta name="twitter:description" content="Binary World 개발자 소개 및 사이트 운영 목적 안내 페이지입니다.">
+  <meta name="twitter:title" content="소개 | 진수의 잡동사니">
+  <meta name="twitter:description" content="한 사람이 만들고 운영하는 무료 웹 놀이터, 진수의 잡동사니를 소개합니다.">
   <meta name="twitter:image" content="https://binaryworld.kr/img/radish.png">
 
   <link rel="icon" href="/img/favicon/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
-  <meta name="theme-color" content="#0b0d10">
+  <meta name="theme-color" content="#0a0c10">
 
+  <link id="bw-pretendard" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" th:href="@{/common/header.css}">
   <link rel="stylesheet" th:href="@{/common/footer.css}">
-  <link rel="stylesheet" th:href="@{/common/legal.css}">
-  <link id="theme-style" rel="stylesheet" th:href="@{/css/main-dark.css}">
+  <link rel="stylesheet" th:href="@{/css/home.css}">
+  <link id="theme-style" rel="stylesheet" th:href="@{/css/home-light.css}">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6890085609044109"
           crossorigin="anonymous"></script>
@@ -40,47 +41,92 @@
     gtag('config', 'G-0TSFJBQ41N');
   </script>
 </head>
-<body class="bw-legal-page" data-theme="dark">
+<body class="bw-site">
 <header id="global-header" aria-label="Binary World 공통 메뉴"></header>
 
-<main class="bw-legal-main">
-  <section class="bw-legal-hero">
-    <p class="bw-legal-eyebrow">About</p>
-    <h1>작고 빠른 실험들이<br>모이는 곳</h1>
-    <p class="bw-legal-lead">
-      Binary World는 1인 개발자가 운영하는 개인 웹 프로젝트 공간입니다.
-      미니게임, 익명 투표, 음식 추천, 상식 테스트, AI 외모 평가처럼
-      바로 써보고 바로 공유할 수 있는 서비스를 만듭니다.
-    </p>
-  </section>
-
-  <section class="bw-legal-panel">
-    <article class="bw-legal-card">
-      <h2>무엇을 하나요</h2>
-      <p>
-        복잡한 회원가입 없이, 방문한 순간부터 즐길 수 있는 가벼운 웹 도구와
-        미니 콘텐츠를 만듭니다. 각 서비스는 독립 서브도메인으로 운영되며
-        공통 헤더와 푸터로 자연스럽게 연결됩니다.
+<main>
+  <section class="bw-page-hero">
+    <div class="bw-hero-bg" aria-hidden="true"></div>
+    <div class="bw-page-hero-inner">
+      <p class="bw-eyebrow"><span class="bw-dot" aria-hidden="true"></span>About</p>
+      <h1 class="bw-page-title">심심할 때 들르는<br>작은 놀이터</h1>
+      <p class="bw-page-lead">
+        진수의 잡동사니(Binary World)는 한 사람이 만들고 운영하는 웹 사이트예요.
+        친구들이랑 커피 내기할 때, 점심 메뉴를 못 고를 때, 그냥 심심할 때
+        링크 하나 열어서 바로 놀 수 있는 것들을 만들어요.
       </p>
-    </article>
-
-    <article class="bw-legal-card">
-      <h2>운영자</h2>
-      <p>개발자: 이진수 (Binary)</p>
-      <p>盡人事待天命</p>
-      <div class="bw-legal-meta">
-        <span class="bw-legal-chip">1인 개발</span>
-        <span class="bw-legal-chip">독립 서브도메인</span>
-        <span class="bw-legal-chip">Signal Glass UI</span>
-      </div>
-    </article>
+    </div>
   </section>
+
+  <div class="bw-about">
+    <section class="bw-about-block">
+      <h2>이런 곳이에요</h2>
+      <div class="bw-about-grid">
+        <div class="bw-about-item">
+          <strong>설치도, 가입도 없이</strong>
+          <p>앱을 깔거나 회원가입할 필요 없어요. 주소만 열면 바로 시작해요.</p>
+        </div>
+        <div class="bw-about-item">
+          <strong>같이 하면 더 재밌게</strong>
+          <p>커피 내기, 벌칙 뽑기, 단톡방 투표처럼 여럿이 모였을 때 쓰기 좋은 것들이 많아요.</p>
+        </div>
+        <div class="bw-about-item">
+          <strong>전부 무료</strong>
+          <p>게임도, 청첩장도 모든 기능을 돈 내지 않고 쓸 수 있어요.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bw-about-block">
+      <h2>있는 것들</h2>
+      <ul class="bw-about-list">
+        <li><a href="https://game.binaryworld.kr">미니게임</a><span>회사 부수기, 경마, 핀볼 룰렛, 와사비 룰렛 같은 내기·복불복 게임과 혼자 하는 게임 14개</span></li>
+        <li><a href="https://star.binaryworld.kr" target="_blank" rel="noopener">별말씀</a><span>모르는 사람의 이야기에 공감하고 내 이야기도 남기는 곳</span></li>
+        <li><a href="https://map.binaryworld.kr">짝꿍지도</a><span>두 이름으로 보는 궁합과 친구들이 사는 곳이 찍히는 지도</span></li>
+        <li><a href="https://vote.binaryworld.kr">익명 투표</a><span>투표를 만들어 링크로 돌리고 결과를 바로 보는 도구</span></li>
+        <li><a href="https://food.binaryworld.kr">점심 메뉴 추천</a><span>한식·중식·일식·양식·분식 중에서 랜덤으로 골라 주는 메뉴 추천</span></li>
+        <li><a href="https://quiz.binaryworld.kr">상식 테스트</a><span>분야별 상식 문제 풀기</span></li>
+        <li><a href="https://face.binaryworld.kr">AI 외모 평가</a><span>사진을 올리면 AI가 재미로 매기는 점수</span></li>
+        <li><a href="https://wedding.binaryworld.kr" target="_blank" rel="noopener">무료 모바일 청첩장</a><span>결제·기간 제한·광고 없이 만드는 모바일 청첩장</span></li>
+      </ul>
+    </section>
+
+    <section class="bw-about-block">
+      <h2>어떻게 무료로 운영하나요</h2>
+      <p>
+        페이지에 붙은 구글 광고 수익으로 운영비를 보태요.
+        서버는 따로 빌리지 않고 집에 있는 작은 PC 한 대로 모든 서비스를 돌리고 있어요.
+        어떤 구조로 돌아가는지 궁금하면 <a href="/infra">서버 구조</a>를 보세요.
+      </p>
+      <p>
+        광고 때문에 쿠키가 쓰일 수 있어요. 자세한 내용은 <a href="/privacy-policy">개인정보처리방침</a>에 적어 뒀어요.
+      </p>
+    </section>
+
+    <section class="bw-about-block bw-about-maker">
+      <div class="bw-about-avatar" aria-hidden="true">
+        <img th:src="@{/img/radish.png}" src="/img/radish.png" alt="" width="120" height="120" loading="lazy">
+      </div>
+      <div>
+        <h2>만든 사람</h2>
+        <p class="bw-about-name">이진수 <span>Binary</span></p>
+        <p>
+          기획, 디자인, 개발, 서버 운영까지 혼자 해요.
+          좋아하는 말은 <b>盡人事待天命</b>(진인사대천명). 할 수 있는 만큼 만들고, 나머지는 쓰는 분들께 맡겨요.
+        </p>
+        <p>
+          버그 제보나 이런 게 있으면 좋겠다는 아이디어는 언제든 환영이에요.
+          <a href="/#bw-guestbook">방명록</a>에 남기거나 <a href="mailto:ljs14741@gmail.com">ljs14741@gmail.com</a>으로 보내 주세요.
+        </p>
+      </div>
+    </section>
+  </div>
 </main>
 
 <footer id="global-footer" aria-label="Binary World 푸터"></footer>
 
+<script th:src="@{/js/tilt.js}" defer></script>
 <script th:src="@{/common/header.js}" defer></script>
 <script th:src="@{/common/footer.js}" defer></script>
-<script th:src="@{/common/legal.js}" defer></script>
 </body>
 </html>

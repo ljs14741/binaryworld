@@ -13,6 +13,7 @@
   const legalLinks = [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
+    { label: 'Infra', href: 'https://binaryworld.kr/infra' },
     { label: 'Privacy Policy', href: '/privacy-policy' },
     { label: 'Contact', href: '/contact' },
   ];
@@ -30,6 +31,14 @@
   ];
 
   function ensureFonts() {
+    // 한글 글꼴 Pretendard (헤더·푸터·방명록 공용, 한 번만 붙임)
+    if (!document.getElementById('bw-pretendard')) {
+      const pretendard = document.createElement('link');
+      pretendard.id = 'bw-pretendard';
+      pretendard.rel = 'stylesheet';
+      pretendard.href = 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css';
+      document.head.appendChild(pretendard);
+    }
     if (document.getElementById('bw-gnb-fonts')) {
       return;
     }
@@ -113,7 +122,7 @@
     '<span>Binary World</span>' +
     '</a>' +
     '<p class="bw-footer-copy">' +
-    '미니게임, 익명투표, 음식추천, 상식테스트까지. 한 곳에서 가볍게 즐기고 바로 공유하는 개인 웹 프로젝트 모음입니다.' +
+    '내기 게임부터 점심 메뉴, 익명 투표, 무료 청첩장까지. 한 사람이 만들고 운영하는 작은 웹 놀이터예요.' +
     '</p>' +
     '</div>' +
     '<div class="bw-footer-panels">' +

@@ -25,7 +25,7 @@
 .bw-global-footer {
   --bw-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --bw-font-display: "Syne", "Avenir Next", "Segoe UI", sans-serif;
-  --bw-font-body: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+  --bw-font-body: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", sans-serif;
 
   position: relative;
   width: 100%;
@@ -160,7 +160,7 @@
 .bw-footer-panel-title {
   margin: 0 0 0.85rem;
   color: var(--bw-text);
-  font-family: var(--bw-font-display);
+  font-family: var(--bw-font-body);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.08em;

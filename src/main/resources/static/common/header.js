@@ -23,6 +23,14 @@
   ];
 
   function ensureFonts() {
+    // 한글 글꼴 Pretendard (헤더·푸터·방명록 공용, 한 번만 붙임)
+    if (!document.getElementById('bw-pretendard')) {
+      const pretendard = document.createElement('link');
+      pretendard.id = 'bw-pretendard';
+      pretendard.rel = 'stylesheet';
+      pretendard.href = 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css';
+      document.head.appendChild(pretendard);
+    }
     if (document.getElementById('bw-gnb-fonts')) {
       return;
     }
